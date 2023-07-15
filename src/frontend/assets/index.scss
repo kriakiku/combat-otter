@@ -1,0 +1,45 @@
+$bgColor: #040404;
+$scrollColor: #15161a;
+
+@font-face {
+  font-family: Victor Mono;
+  src: url(./fonts/victor-mono.ttf);
+}
+
+@font-face {
+  font-family: Tilt Warp;
+  src: url(./fonts/tilt-warp.ttf);
+}
+
+body {
+  font-family: 'Victor Mono', monospace;
+  --bg-color: #{$bgColor};
+}
+
+:root, body, html {
+  margin: 0;
+  padding: 0;
+  background: $bgColor;
+  color: #fff;
+  max-width: 100%;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background-color: $bgColor;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $scrollColor;
+  // box-shadow: inset 0 0 2px $scrollColor;
+  border-radius: 4px 0 0 4px;
+}
+::-webkit-scrollbar-track:window-inactive {
+  background-color: $bgColor;
+}

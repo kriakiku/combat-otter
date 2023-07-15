@@ -1,22 +1,37 @@
 <template>
-    <main :class="[$style.container]">
-        <!-- User info -->
-        <header :class="[$style.header]">
+    <main :class="$style.container">
+        <header :class="$style.header">
+            <!-- Back -->
+            <div :class="$style.back" v-if="$slots.back">
+                <slot name="back" />
+                <v-icon name="md-keyboardarrowleft-round" scale="1.6" />
+            </div>
+
+            <!-- Title -->
+            <base-title :class="$style.title">
+                <slot name="title" />
+            </base-title>
         </header>
 
-        <!-- Menu -->
-        <div :class="[$style.menu]">
-            GGWP
-        </div>
+        <!-- Content -->
+        <section :class="$style.content">
 
-        <!-- Title -->
-        <h1>Pick menu</h1>
+            <!-- Guide -->
+            <surface v-if="$slots.guide">
+                <badge>
+                    {{ $t('badge.presets.tip') }}
+                </badge>
 
-        <slot />
+                <slot name="guide" />
+            </surface>
+
+            <slot />
+        </section>
     </main>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import 'vue-i18n'
 import { ref } from 'vue'
 
 const active = ref('guide')
@@ -26,57 +41,41 @@ const active = ref('guide')
     .container {
         display: flex;
         flex-direction: column;
-        height: 100%;
-        margin: 14px;
-        border-radius: 14px;
-        overflow: hidden;
-        background: #1a1218;
+        padding: 1rem 0;
+    }
+
+    .content {
+        padding: 0 2rem;
     }
 
     .header {
-        position: relative;
+        position: sticky;
+        top: 0;
         display: flex;
-        min-height: 140px;
-
-        &::before {
-            display: block;
-            content: "";
-
-            position: absolute;
-            z-index: 1;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-            background: url(../assets/banner.jpg);
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        &::after {
-            display: block;
-            content: "";
-
-            position: absolute;
-            z-index: 2;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
-
-            background: linear-gradient(
-                180deg,
-                rgba(14,182,193,0.4) 0%,
-                rgba(234,87,203,0.6) 100%
-            );
-        }
+        padding: 0rem 2rem;
+        background-color: var(--bg-color);
+        margin-bottom: 1rem;
+        -webkit-app-region: drag;
+        user-select: none;
     }
 
-    .menu {
-        background: #d448b5;
-        margin: 0;
-        border-radius: 0;
-        height: 42px;
+    .title {
+        margin: 0.4rem 0;
+    }
+
+    .back {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-right: 0.6rem;
+        -webkit-app-region: no-drag;
+
+        > a {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     }
 </style>

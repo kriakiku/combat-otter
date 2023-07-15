@@ -25,6 +25,13 @@ rules.push({
   ]
 })
 
+rules.push({
+  test: /\.(jpg|png)$/,
+  use: {
+    loader: 'url-loader',
+  },
+})
+
 export const rendererConfig: Configuration = {
   module: {
     rules,

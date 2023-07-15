@@ -12,15 +12,29 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+const isProd = !app.isPackaged;
+const devToolsPadding = isProd ? 0 : 610
+
 const createWindow = (): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     height: 600,
-    width: 800,
+    minHeight: 300,
+    width: 752 + devToolsPadding,
+    minWidth: 600,
+    maxWidth: 800 + devToolsPadding,
+    titleBarStyle: isProd ? 'hidden' : 'default',
+    titleBarOverlay: {
+      color: '#040404',
+      symbolColor: '#fff',
+      height: 32
+    },
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
     },
   });
+
+  mainWindow.setBackgroundColor('#040404');
 
   // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);

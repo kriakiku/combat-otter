@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
         "Fastify"
-    ]
+    ],
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
