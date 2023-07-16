@@ -1,9 +1,9 @@
 <template>
     <div :class="$style.container">
-        <a
+        <router-link
             v-for="item of items"
             :key="item.slug"
-            :href="'#'"
+            :to="item.to || '/'"
             :class="$style.item"
             :style="{
                 color: item.color
@@ -15,17 +15,20 @@
                     {{ item.title }}
                 </span>
             </div>
-        </a>
+        </router-link>
     </div>
 </template>
 
 <script lang="ts" setup>
+import { RouteLocationRaw } from 'vue-router';
+
 const props = defineProps<{
     items: Array<{
         slug: string,
         title: string,
         color: string,
         banner?: string
+        to?: RouteLocationRaw
     }>
 }>()
 
@@ -56,7 +59,7 @@ const items = props.items
     margin-bottom: 1rem;
     color: #fff;
     font-size: 2rem;
-    font-family: 'Tilt Warp', cursive;
+    font-family: var(--second-font);
     text-transform: uppercase;
     text-align: center;
 }

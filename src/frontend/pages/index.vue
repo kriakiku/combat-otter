@@ -124,9 +124,7 @@
                         </template>
 
                         <template #action>
-                            <select>
-                                <option>English</option>
-                            </select>
+                            <settings-language-picker />
                         </template>
                     </menu-item>
 

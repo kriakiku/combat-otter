@@ -12,7 +12,7 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const isProd = !app.isPackaged;
+const isProd = app.isPackaged;
 const devToolsPadding = isProd ? 0 : 610
 
 const createWindow = (): void => {

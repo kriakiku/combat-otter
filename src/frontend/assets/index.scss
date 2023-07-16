@@ -1,5 +1,5 @@
 $bgColor: #040404;
-$scrollColor: #15161a;
+$secondColor: #15161a;
 
 @font-face {
   font-family: Victor Mono;
@@ -12,7 +12,9 @@ $scrollColor: #15161a;
 }
 
 body {
-  font-family: 'Victor Mono', monospace;
+  --main-font: 'Victor Mono', monospace;
+  --second-font: 'Tilt Warp', cursive;
+  font-family: var(--main-font);
   --bg-color: #{$bgColor};
 }
 
@@ -23,6 +25,18 @@ body {
   color: #fff;
   max-width: 100%;
   width: 100%;
+}
+
+:global(.p-dropdown), :global(.p-dropdown-panel) {
+  background: $bgColor;
+}
+
+:global(.p-inputtext) {
+  padding: 0.4rem;
+}
+
+:global(.p-component), :global(.p-inputtext) {
+  font-family: var(--main-font);
 }
 
 ::-webkit-scrollbar {
@@ -36,8 +50,7 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: $scrollColor;
-  // box-shadow: inset 0 0 2px $scrollColor;
+  background: $secondColor;
   border-radius: 4px 0 0 4px;
 }
 ::-webkit-scrollbar-track:window-inactive {

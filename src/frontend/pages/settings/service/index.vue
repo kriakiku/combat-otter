@@ -29,7 +29,8 @@ const items = computed(() => ([
         slug: Services.screenshot,
         title: 'Screen capture',
         color: '#f67bf2',
-        banner: screenshotBanner
+        banner: screenshotBanner,
+        to: { name: 'settings.service.screenshot' }
     },
     {
         slug: Services.obs,

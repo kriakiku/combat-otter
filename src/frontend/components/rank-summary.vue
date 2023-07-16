@@ -140,7 +140,7 @@ const render = computed(() => {
     min-height: 3.8rem;
     color: #fff;
     line-height: 0.9;
-    font-family: 'Tilt Warp', cursive;
+    font-family: var(--second-font);
     font-size: 2rem;
     text-transform: uppercase;
     text-align: center;
@@ -167,7 +167,7 @@ const render = computed(() => {
     display: inline-block;
     width: 1.8rem;
     color: #000;
-    font-family: 'Tilt Warp', cursive;
+    font-family: var(--second-font);
     
     background: #fff;
     color: currentColor;
