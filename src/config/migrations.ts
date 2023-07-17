@@ -1,3 +1,4 @@
+import { app } from 'electron'
 import Store from 'electron-store'
 import { SettingsStore, SettingsKeys, ServiceInterval, Services } from '../typed';
 
@@ -23,6 +24,9 @@ export const store = new Store<SettingsStore>({
 
         /** Backend */
         [SettingsKeys.BackendEnabled]: true,
-        [SettingsKeys.BackendPort]: null
+        [SettingsKeys.BackendPort]: null,
+
+        /** User settings */
+        [SettingsKeys.UserRawLocale]: app.getLocaleCountryCode(),
     }
 });

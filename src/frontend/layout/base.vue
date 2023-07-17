@@ -50,6 +50,7 @@ const active = ref('guide')
 
     .header {
         position: sticky;
+        z-index: 3;
         top: 0;
         display: flex;
         padding: 0rem 2rem;

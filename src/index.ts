@@ -13,6 +13,11 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
+console.log(
+  '[userData:path]',
+  app.getPath('userData')
+)
+
 const isProd = app.isPackaged;
 const devToolsPadding = isProd ? 0 : 610
 

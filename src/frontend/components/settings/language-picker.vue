@@ -1,6 +1,6 @@
 <template>
     <dropdown
-        v-model="pickedLocale"
+        v-model="value"
         :options="availableLocales"
         placeholder="Select a locale"
         class="w-full md:w-14rem"
@@ -28,11 +28,13 @@
 
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n'
-import { ref } from "vue";
+import { SettingsKeys } from '../../../typed';
+import { useSetting } from '../../stores/settings';
 import gbFlag from '../../assets/images/flags/gb.svg';
 import uaFlag from '../../assets/images/flags/ua.svg';
 import ruFlag from '../../assets/images/flags/ru.svg';
 import ltFlag from '../../assets/images/flags/lt.svg';
+import { computed, watch } from 'vue';
 
 const flags = {
     en: gbFlag,
@@ -41,9 +43,18 @@ const flags = {
     lt: ltFlag
 }
 
-const { availableLocales } = useI18n();
+const { availableLocales, locale } = useI18n();
+const userRawLocale = useSetting(SettingsKeys.UserRawLocale)
 
-const pickedLocale = ref();
+const value = computed({
+    get() {
+        return locale.value
+    },
+    set(value: string) {
+        locale.value = value
+        userRawLocale.value = value
+    }
+})
 
 </script>
 

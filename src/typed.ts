@@ -8,7 +8,10 @@ export enum SettingsKeys {
 
     /** Backend */
     BackendEnabled = 'backend.enabled',
-    BackendPort = 'backend.port'
+    BackendPort = 'backend.port',
+
+    /** User settings */
+    UserRawLocale = 'user.raw-locale',
 }
 
 export interface SettingsStore {
@@ -22,7 +25,10 @@ export interface SettingsStore {
 
     /** Backend */
     [SettingsKeys.BackendEnabled]: boolean,
-    [SettingsKeys.BackendPort]: null | number
+    [SettingsKeys.BackendPort]: null | number,
+
+    /** User settings */
+    [SettingsKeys.UserRawLocale]: string
 }
 
 export enum Services {
