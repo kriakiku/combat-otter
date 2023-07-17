@@ -1,66 +1,6 @@
 <template>
-    <!-- Frequency picker -->
-    <menu-item>
-        <template #icon>
-            <v-icon name="ri-alarm-line" scale="1.4" />
-        </template>
-
-        <template #title>
-            {{ $t('service.interval.title') }}
-        </template>
-
-        <template #description>
-            {{ $t(`service.interval.description.${interval}`) }}
-        </template>
-
-        <template #action>
-            <dropdown
-                v-model="interval"
-                :options="options"
-            >
-                <!-- Picked -->
-                <template #value="{ value, placeholder }">
-                    <template v-if="value">
-                        {{ $t(`service.interval.options.${value}`, value in ServiceIntervalMs ? {
-                            sec: Math.round(ServiceIntervalMs[value as keyof typeof ServiceIntervalMs] / 1000)
-                        } : undefined) }}
-                    </template>
-                    <template v-else>
-                        {{ placeholder }}
-                    </template>
-                </template>
-
-                <!-- List -->
-                <template #option="{ option }">
-                    {{ $t(`service.interval.options.${option}`, option in ServiceIntervalMs ? {
-                            sec: Math.round(ServiceIntervalMs[option as keyof typeof ServiceIntervalMs] / 1000)
-                    } : undefined) }}
-                </template>
-            </dropdown>
-        </template>
-    </menu-item>
-
-    <!-- Delay after successful recognition -->
-    <menu-item v-if="interval !== ServiceInterval.SHORTCUT">
-        <template #icon>
-            <v-icon name="ri-zzz-fill" scale="1.4" />
-        </template>
-
-        <template #title>
-            {{ $t('service.interval.delay.title') }}
-        </template>
-
-        <template #description>
-            {{ $t(`service.interval.delay.description`) }}
-        </template>
-
-        <template #action>
-            <input-switch v-model="delay" />
-        </template>
-    </menu-item>
-
     <!-- Shortcut -->
-    <menu-item v-else>
+    <menu-item>
         <template #icon>
             <span :class="$style.keyboardKey">F</span>
         </template>
@@ -97,18 +37,24 @@
             </div>
         </template>
     </menu-item>
-
 </template>
 
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, onUnmounted, ref } from "vue";
 import hotkeys from 'hotkeys-js'
-import { ServiceInterval, ServiceIntervalMs } from '../../../typed'
 
-const options = ref(Object.values(ServiceInterval))
-const interval = ref(ServiceInterval.SHORTCUT)
-const delay = ref(true)
-const shortcut = ref<string[]>([])
+const props = defineProps(['modelValue'])
+const emit = defineEmits(['update:modelValue'])
+
+const shortcut = computed<string[]>({
+  get() {
+    return props.modelValue
+  },
+  set(value) {
+    emit('update:modelValue', value)
+  }
+})
+
 const shortcutRecording = ref(false)
 
 function stopShortcutRecord() {
@@ -158,13 +104,11 @@ function startShortcutRecord() {
         shortcut.value = nowPressedKeys;
     })
 }
+
+onUnmounted(stopShortcutRecord)
 </script>
 
 <style lang="scss" module>
-    .item {
-        display: flex;
-    }
-
     .keyboardKeyBlock {
         display: flex;
         flex-direction: column;

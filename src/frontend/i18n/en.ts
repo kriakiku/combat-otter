@@ -19,6 +19,7 @@ export default {
             'We care about maintaining the performance of your device. You don\'t have to worry about FPS drops while using the utility.',
 
         interval: {
+            blockTitle: 'Frequency',
             title: 'Statistics collection frequency',
             description: {
                 [ServiceInterval.SHORTCUT]: 'The most efficient way to collect statistics. The most minimal load on your system',
@@ -45,6 +46,10 @@ export default {
                 cancel: 'Press ESC to cancel record',
                 reset: 'Click to reset'
             }
+        },
+
+        'input-source': {
+            title: 'Input source'
         },
     
         screenshot: {

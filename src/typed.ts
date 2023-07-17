@@ -1,3 +1,21 @@
+export enum SettingsKeys {
+    ServiceFrequencyInterval = 'service.frequency.interval',
+    ServiceFrequencyShortcut = 'service.frequency.shortcut',
+    ServiceFrequencyDelay = 'service.frequency.delay',
+
+    ServiceInputSourceService = 'service.input-source.service',
+}
+
+export interface SettingsStore {
+    /** Service: Frequency */
+    [SettingsKeys.ServiceFrequencyInterval]: ServiceInterval,
+    [SettingsKeys.ServiceFrequencyShortcut]: string[],
+    [SettingsKeys.ServiceFrequencyDelay]: boolean,
+
+    /** Service: Input Source */
+    [SettingsKeys.ServiceInputSourceService]: Services
+}
+
 export enum Services {
     screenshot = "screenshot",
     obs = "obs",
@@ -42,3 +60,4 @@ export const ServiceIntervalMs = {
 }
 
 export const SERVICE_INTERVAL_PAUSE = 5 * 60 * 1000
+

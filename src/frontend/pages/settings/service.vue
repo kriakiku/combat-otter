@@ -1,27 +1,29 @@
 <template>
     <layout-base>
         <template #back>
-            <router-link :to="{ name: 'settings.service' }" />
+            <router-link :to="{ name: 'home' }" />
         </template>
 
         <template #title>
-                <slot name="title" />
+            {{ $t("service.title") }}
         </template>
         
         <template #guide>
-            <slot name="guide" />
+            {{ $t("service.disclaimer") }}
         </template>
 
         <template #default>
             <div :class="$style.container">
-                <menu-list>
-                    <!-- Interval picker -->
-                    <service-interval-picker />
-                </menu-list>
-            
+                <!-- Frequency -->
+                <service-frequency-picker />
 
+                <!-- Input source -->
+                <service-input-source-picker />
+
+                <!-- Processing -->
+            
                 <!-- Specific content -->
-                <slot />
+                GGWP
             </div>
         </template>
 
