@@ -1,9 +1,14 @@
 export enum SettingsKeys {
+    /** Service */
     ServiceFrequencyInterval = 'service.frequency.interval',
     ServiceFrequencyShortcut = 'service.frequency.shortcut',
     ServiceFrequencyDelay = 'service.frequency.delay',
 
     ServiceInputSourceService = 'service.input-source.service',
+
+    /** Backend */
+    BackendEnabled = 'backend.enabled',
+    BackendPort = 'backend.port'
 }
 
 export interface SettingsStore {
@@ -13,7 +18,11 @@ export interface SettingsStore {
     [SettingsKeys.ServiceFrequencyDelay]: boolean,
 
     /** Service: Input Source */
-    [SettingsKeys.ServiceInputSourceService]: Services
+    [SettingsKeys.ServiceInputSourceService]: Services,
+
+    /** Backend */
+    [SettingsKeys.BackendEnabled]: boolean,
+    [SettingsKeys.BackendPort]: null | number
 }
 
 export enum Services {

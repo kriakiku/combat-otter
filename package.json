@@ -49,8 +49,9 @@
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
     "electron-store": "^8.1.0",
-    "fastify": "^4.19.2",
+    "fastify": "^4.20.0",
     "fluent-ffmpeg": "^2.1.2",
+    "get-port": "^7.0.0",
     "hotkeys-js": "^3.11.2",
     "obs-websocket-js": "^5.0.3",
     "oh-vue-icons": "^1.0.0-rc3",

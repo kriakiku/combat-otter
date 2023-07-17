@@ -19,6 +19,10 @@ export const store = new Store<SettingsStore>({
         [SettingsKeys.ServiceFrequencyDelay]: true,
 
         /** Service: Input Source */
-        [SettingsKeys.ServiceInputSourceService]: Services.screenshot
+        [SettingsKeys.ServiceInputSourceService]: Services.screenshot,
+
+        /** Backend */
+        [SettingsKeys.BackendEnabled]: true,
+        [SettingsKeys.BackendPort]: null
     }
 });
