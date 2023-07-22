@@ -1,7 +1,7 @@
 import { app } from 'electron'
 import { FastifyInstance } from 'fastify'
-import { config } from '../../config';
-import { SettingsKeys } from '../../typed';
+import { config } from '@config/index';
+import { SettingsKeys } from '@typed';
 import getPort from 'get-port';
 
 const DEFAULT_PORT = 1337;

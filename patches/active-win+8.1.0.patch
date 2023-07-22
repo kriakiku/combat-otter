@@ -1,0 +1,28 @@
+diff --git a/node_modules/active-win/lib/binding/napi-6-win32-unknown-x64/node-active-win.node b/node_modules/active-win/lib/binding/napi-6-win32-unknown-x64/node-active-win.node
+index 1a564c0..c65b5d0 100644
+Binary files a/node_modules/active-win/lib/binding/napi-6-win32-unknown-x64/node-active-win.node and b/node_modules/active-win/lib/binding/napi-6-win32-unknown-x64/node-active-win.node differ
+diff --git a/node_modules/active-win/lib/windows-binding.js b/node_modules/active-win/lib/windows-binding.js
+index 81f9506..4ffca4d 100644
+--- a/node_modules/active-win/lib/windows-binding.js
++++ b/node_modules/active-win/lib/windows-binding.js
+@@ -1,12 +1,15 @@
+ const binary = require('@mapbox/node-pre-gyp');
+ const path = require('path');
+-const fs = require('fs');
+ 
+ const bindingPath = binary.find(path.resolve(path.join(__dirname, '../package.json')));
+ 
+-const binding = (fs.existsSync(bindingPath)) ? require(bindingPath) : {
+-	getActiveWindow: () => {},
+-	getOpenWindows: () => {}
+-};
++const binding = {
++	get getActiveWindow() {
++		return require(bindingPath).getActiveWindow
++	},
++	get getOpenWindows() {
++		return require(bindingPath).getOpenWindows
++	}
++}
+ 
+ module.exports = binding;

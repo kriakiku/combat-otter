@@ -1,3 +1,4 @@
+import { join } from 'node:path'
 import type { ForgeConfig } from '@electron-forge/shared-types';
 import { MakerSquirrel } from '@electron-forge/maker-squirrel';
 import { MakerZIP } from '@electron-forge/maker-zip';
@@ -5,6 +6,7 @@ import { MakerDeb } from '@electron-forge/maker-deb';
 import { MakerRpm } from '@electron-forge/maker-rpm';
 import { AutoUnpackNativesPlugin } from '@electron-forge/plugin-auto-unpack-natives';
 import { WebpackPlugin } from '@electron-forge/plugin-webpack';
+import FFmpegStatic from "ffmpeg-static-electron-forge";
 
 import { mainConfig } from './webpack.main.config';
 import { rendererConfig } from './webpack.renderer.config';
@@ -32,6 +34,10 @@ const config: ForgeConfig = {
           },
         ],
       },
+    }),
+    new FFmpegStatic({
+      remove: true,
+      path: join(__dirname, ".webpack", "main"),
     }),
   ],
 };

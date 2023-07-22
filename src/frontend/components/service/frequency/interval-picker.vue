@@ -35,7 +35,7 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import { useI18n } from 'vue-i18n'
-import { ServiceInterval, ServiceIntervalMs } from '../../../../typed'
+import { ServiceInterval, ServiceIntervalMs } from '@typed'
 
 const { t } = useI18n();
 

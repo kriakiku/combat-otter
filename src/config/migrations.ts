@@ -1,6 +1,6 @@
 import { app } from 'electron'
 import Store from 'electron-store'
-import { SettingsStore, SettingsKeys, ServiceInterval, Services } from '../typed';
+import { SettingsStore, SettingsKeys, ServiceInterval, Services } from '@typed';
 
 export const store = new Store<SettingsStore>({
     watch: true,

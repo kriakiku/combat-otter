@@ -1,3 +1,4 @@
+import { join } from 'node:path'
 import type { Configuration } from 'webpack';
 
 import { rules } from './webpack.rules';
@@ -39,5 +40,9 @@ export const rendererConfig: Configuration = {
   plugins,
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
+    alias: {
+      "@frontend": join(__dirname, './src/frontend'),
+      "@typed": join(__dirname, './src/typed.ts'),
+    }
   },
 };

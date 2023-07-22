@@ -1,4 +1,6 @@
 import { app, BrowserWindow } from 'electron';
+import './modules/ffmpeg'
+
 import './backend'
 import './config'
 

@@ -1,6 +1,6 @@
 import { app, ipcMain, IpcMainEvent, WebContents } from 'electron'
 import { store } from './migrations';
-import { SettingsKeys } from '../typed';
+import { SettingsKeys } from '@typed';
 
 /** Subscribers */
 const updateSubscribers: WebContents[] = [];

@@ -1,4 +1,5 @@
 import type { Configuration } from 'webpack';
+import { join } from 'node:path'
 
 import { rules } from './webpack.rules';
 
@@ -12,7 +13,16 @@ export const mainConfig: Configuration = {
   module: {
     rules,
   },
+  // [solve] active-win > node-pre-gyp [deps]
+  externals: ['nock', 'mock-aws-s3', 'aws-sdk'],
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
+    alias: {
+      "@backend": join(__dirname, './src/backend'),
+      "@config": join(__dirname, './src/config'),
+      "@services": join(__dirname, './src/services'),
+      "@modules": join(__dirname, './src/modules'),
+      "@typed": join(__dirname, './src/typed.ts'),
+    }
   },
 };

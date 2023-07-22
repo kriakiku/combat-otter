@@ -20,8 +20,8 @@
 import IntervalPicker from './interval-picker.vue'
 import DelayPicker from './delay-picker.vue'
 import ShortcutRecord from './shortcut-record.vue'
-import { ServiceInterval, SettingsKeys } from '../../../../typed';
-import { useSetting } from '../../../stores/settings'
+import { ServiceInterval, SettingsKeys } from '@typed';
+import { useSetting } from '@frontend/stores/settings'
 
 const interval = useSetting(SettingsKeys.ServiceFrequencyInterval)
 const delay = useSetting(SettingsKeys.ServiceFrequencyDelay)

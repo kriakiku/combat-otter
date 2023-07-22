@@ -28,12 +28,12 @@
 
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n'
-import { SettingsKeys } from '../../../typed';
-import { useSetting } from '../../stores/settings';
-import gbFlag from '../../assets/images/flags/gb.svg';
-import uaFlag from '../../assets/images/flags/ua.svg';
-import ruFlag from '../../assets/images/flags/ru.svg';
-import ltFlag from '../../assets/images/flags/lt.svg';
+import { SettingsKeys } from '@typed';
+import { useSetting } from '@frontend/stores/settings';
+import gbFlag from '@frontend/assets/images/flags/gb.svg';
+import uaFlag from '@frontend/assets/images/flags/ua.svg';
+import ruFlag from '@frontend/assets/images/flags/ru.svg';
+import ltFlag from '@frontend/assets/images/flags/lt.svg';
 import { computed, watch } from 'vue';
 
 const flags = {

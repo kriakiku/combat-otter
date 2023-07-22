@@ -57,7 +57,7 @@
 <script lang="ts" setup>
 import 'vue-i18n'
 import { computed } from 'vue';
-import { Division, DivisionLevel, RankedType } from '../../typed';
+import { Division, DivisionLevel, RankedType } from '@typed';
 
 const { division, divisionLevel, type, sr } = defineProps<{
     division: Division,

@@ -137,7 +137,7 @@
 
 <script setup lang="ts">
 import 'vue-i18n'
-import { Division, DivisionLevel, RankedType } from '../../typed';
+import { Division, DivisionLevel, RankedType } from '@typed';
 
 const wz = {
     division: Division.crimson,

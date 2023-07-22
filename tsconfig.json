@@ -12,8 +12,14 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "paths": {
-      "*": ["node_modules/*", "./src/*.d.ts"]
-  }
+      "@frontend/*": ["./src/frontend/*"],
+      "@backend/*": ["./src/backend/*"],
+      "@config/*": ["./src/config/*"],
+      "@services/*": ["./src/services/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@typed": ["./src/typed.ts"],
+      "*": ["node_modules/*", "./src/*.d.ts"],
+    }
   },
   "include": ["src/**/*"]
 }

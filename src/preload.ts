@@ -1,7 +1,7 @@
 // See the Electron documentation for details on how to use preload scripts:
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron'
-import { SettingsStore } from './typed'
+import { SettingsStore } from '@typed'
 
 const api = {
   setSettings: <K extends keyof SettingsStore>(key: K, value: SettingsStore[K]) => {

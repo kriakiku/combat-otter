@@ -1,4 +1,4 @@
-import { ServiceInterval } from "../../typed";
+import { ServiceInterval } from "@typed";
 
 export default {
     languageTitle: 'English',

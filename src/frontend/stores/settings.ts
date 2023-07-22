@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { SettingsKeys, SettingsStore } from '../../typed'
+import { SettingsKeys, SettingsStore } from '@typed'
 import { computed } from 'vue';
 
 /**
