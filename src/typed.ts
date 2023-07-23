@@ -34,8 +34,6 @@ export interface SettingsStore {
 export enum Services {
     screenshot = "screenshot",
     obs = "obs",
-    twitch = "twitch",
-    youtube = "youtube",
 }
 
 export enum Division {

@@ -823,13 +823,6 @@
   resolved "https://registry.yarnpkg.com/@types/retry/-/retry-0.12.0.tgz#2b35eccfcee7d38cd72ad99232fbd58bffb3c84d"
   integrity sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==
 
-"@types/screenshot-desktop@^1.12.0":
-  version "1.12.0"
-  resolved "https://registry.yarnpkg.com/@types/screenshot-desktop/-/screenshot-desktop-1.12.0.tgz#7304aae0f0cace1c36fcd9bc5419d280ba04af6f"
-  integrity sha512-jzYeXNOWXLTAUPnK1LV4AQNY5N0T45UTFAmxF5oYk9dFrkdtmFwQZRZ9+M2jOrDowQV5jrasEWPQLkGAf/yXNA==
-  dependencies:
-    "@types/node" "*"
-
 "@types/semver@^7.3.12":
   version "7.5.0"
   resolved "https://registry.yarnpkg.com/@types/semver/-/semver-7.5.0.tgz#591c1ce3a702c45ee15f47a42ade72c2fd78978a"
@@ -3032,16 +3025,6 @@ ffmpeg-static-electron-forge@^1.1.7:
     adm-zip "^0.5.10"
     glob "^10.2.6"
     unzipper "^0.10.11"
-
-ffmpeg-static-electron@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/ffmpeg-static-electron/-/ffmpeg-static-electron-2.0.3.tgz#4d49bf18ea929844bb135f60c51013fcb15d0790"
-  integrity sha512-VGix5A0LTM6RHgwkFvL5x+c5m4WfacBFeuw7Twq1gVrYRgLHOVpawOmydmWbrRz58LVO7ao00P2EDjb7ZmE5rg==
-
-ffprobe-static-electron@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/ffprobe-static-electron/-/ffprobe-static-electron-2.0.2.tgz#6b202cc7a20cf90a076a4686f2034222dfb65384"
-  integrity sha512-HtEUZ7qpi5WcbgnI7m0slS6qzjoKnlqfxW6Yx7cWV75hRhkWnwlhq0mVAyWtRm2hujMm2/8sfhq1A/8RC6A0GQ==
 
 file-entry-cache@^6.0.1:
   version "6.0.1"
@@ -5808,13 +5791,6 @@ schema-utils@^4.0.0:
     ajv-formats "^2.1.1"
     ajv-keywords "^5.1.0"
 
-screenshot-desktop@^1.15.0:
-  version "1.15.0"
-  resolved "https://registry.yarnpkg.com/screenshot-desktop/-/screenshot-desktop-1.15.0.tgz#62109463865cdb1bbe61dff39003cd06ac404fb0"
-  integrity sha512-CLaZNBDEXU+KJ6BGsO8jSbKI7Zck7gQmFJHjzluBdwrVP0jOemP2avpD3ufWu81yqzwB92u2AMv+K9IlaslRsg==
-  dependencies:
-    temp "^0.9.4"
-
 secure-json-parse@^2.5.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/secure-json-parse/-/secure-json-parse-2.7.0.tgz#5a5f9cd6ae47df23dba3151edd06855d47e09862"
@@ -6310,7 +6286,7 @@ tar@^6.0.5, tar@^6.1.11, tar@^6.1.2:
     mkdirp "^1.0.3"
     yallist "^4.0.0"
 
-temp@^0.9.0, temp@^0.9.4:
+temp@^0.9.0:
   version "0.9.4"
   resolved "https://registry.yarnpkg.com/temp/-/temp-0.9.4.tgz#cd20a8580cb63635d0e4e9d4bd989d44286e7620"
   integrity sha512-yYrrsWnrXMcdsnu/7YMYAofM1ktpL5By7vZhf15CrXijWWrEYZks5AXBudalfSWJLlnen/QUJUB5aoB0kqZUGA==
@@ -6476,11 +6452,6 @@ tsutils@^3.21.0:
   integrity sha512-mHKK3iUXL+3UF6xL5k0PEhKRUBKPBCv/+RkEOpjRWxxx27KKRBmmA60A9pgOUvMi8GKhRMPEmjBRPzs2W7O1OA==
   dependencies:
     tslib "^1.8.1"
-
-twitch-m3u8-v2@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/twitch-m3u8-v2/-/twitch-m3u8-v2-1.1.2.tgz#2c5c0ada0e1f29f2d6493488a056a17c640e6724"
-  integrity sha512-+zYIz2Eew9XfNsPnzB7/8+OiyLzMVCTJt1GTkfHpOEofA7TG4Dt/y4XrRLWu7CLVO4wHvAhVuptAvG1EFSE+Wg==
 
 type-check@^0.4.0, type-check@~0.4.0:
   version "0.4.0"

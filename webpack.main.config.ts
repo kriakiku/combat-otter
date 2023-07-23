@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import { rules } from './webpack.rules';
 
 export const mainConfig: Configuration = {
+  cache: false,
   /**
    * This is the main entry point for your application, it's the first file
    * that runs in the main process.

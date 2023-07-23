@@ -1,4 +1,4 @@
-import { ServiceInterval } from "@typed";
+import { ServiceInterval, Services } from "@typed";
 
 export default {
     languageTitle: 'English',
@@ -49,16 +49,23 @@ export default {
         },
 
         'input-source': {
-            title: 'Input source'
+            title: 'Input source',
+            sources: {
+                [Services.screenshot]: {
+                    title: 'Screen capture',
+                    description:
+                        'This method is suitable for you if you are just playing the game on your PC. ' +
+                        'It is also suitable for console players broadcasting the screen to a PC (or using a video capture card), ' +
+                        'as well as for cloud gaming'
+                },
+                [Services.obs]: {
+                    title: 'OBS Integration',
+                    description:
+                        'If you stream via OBS – you can integrate screen capture via OBS. This is the best solution for you'
+                }
+            }
         },
     
-        screenshot: {
-            title: 'Screen capture',
-            disclaimer:
-                'This method is suitable for you if you are just playing the game on your PC. ' +
-                'It is also suitable for console players broadcasting the screen to a PC (or using a video capture card), ' +
-                'as well as for cloud gaming. If you are a streamer, there is probably a more convenient option for you (integration with OBS).'
-        }
     },
 
     plugins: {

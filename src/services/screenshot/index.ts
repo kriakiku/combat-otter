@@ -49,7 +49,7 @@ export async function getActiveWindowList(): Promise<Array<any>> {
 
         console.log(activeWin)
 
-        return ['lol', await activeWin()];
+        return ['lol', await activeWin.getOpenWindows()];
 
         // const child = spawn(ffmpegPath, ['-h'], { shell: true, stdio: 'inherit' });
 
