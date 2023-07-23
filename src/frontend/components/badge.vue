@@ -6,10 +6,10 @@
     </span>
 </template>
 
-<script setup>
-const props = defineProps({
-    color: ['info', 'danger']
-})
+<script lang="ts" setup>
+const props = defineProps<{
+    color?: 'info' | 'danger' | 'warning' | 'blank'
+}>();
 
 const color = props.color || 'info'
 </script>
@@ -33,5 +33,13 @@ const color = props.color || 'info'
 
 .tip--info {
     color: #6facd9;
+}
+
+.tip--warning {
+    color: #ffd400;
+}
+
+.tip--blank {
+    color: currentColor;
 }
 </style>

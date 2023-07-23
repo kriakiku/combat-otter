@@ -1,4 +1,4 @@
-import { ServiceInterval, Services } from "@typed";
+import { ServiceInterval, Services, ServiceScreenshotMethod, ServiceScreenshotWindowPreset } from "@typed";
 
 export default {
     languageTitle: 'English',
@@ -56,7 +56,39 @@ export default {
                     description:
                         'This method is suitable for you if you are just playing the game on your PC. ' +
                         'It is also suitable for console players broadcasting the screen to a PC (or using a video capture card), ' +
-                        'as well as for cloud gaming'
+                        'as well as for cloud gaming',
+                    method: {
+                        title: 'Capture method',
+                        options: {
+                            [ServiceScreenshotMethod.SCREEN_CAPTURE]: {
+                                title: '👍 Screen capture',
+                                description: 'Use this capture method if the "Window capture" mode does not work for you. The capture method has excellent compatibility, but will not be able to capture a minimized window',
+                            },
+                            [ServiceScreenshotMethod.WINDOW_CAPTURE]: {
+                                title: '🔥 Window capture',
+                                description: 'This method may not work if you have multiple GPUs (discrete and integrated graphics). If you see a black/green screen, just switch to the "Screen capture" method. 🔥 This method is able to capture the game in minimized mode'
+                            },
+                        }
+                    },
+                    window: {
+                        title: 'Window to capture',
+                        presetsTitle: 'Presets',
+                        presets: {
+                            [ServiceScreenshotWindowPreset.COD_APPLICATION]: {
+                                title: '🔥 Automatic game detection',
+                                description: 'The best choice! Automatic detection of the game running through Steam or Battle.net'
+                            },
+                            [ServiceScreenshotWindowPreset.FULL_SCREEN]: {
+                                title: '💩 Capture all screens',
+                                description: 'We do not recommend using this method. It can lead to false positives when viewing streams'
+                            }
+                        },
+                        windows: {
+                            title: 'Current open windows',
+                            description: 'If the desired application is not in the list - expand it to full screen and wait 7 seconds, after which it should appear in the list',
+                            itemDescription: 'An attempt will be made to capture the window with the executable file "{path}" ({title})'
+                        }
+                    }
                 },
                 [Services.obs]: {
                     title: 'OBS Integration',
@@ -96,7 +128,8 @@ export default {
 
     badge: {
         presets: {
-            tip: 'Tip'
+            tip: 'Tip',
+            attention: 'Attention'
         }
     },
 

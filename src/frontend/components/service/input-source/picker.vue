@@ -7,16 +7,27 @@
 
         <!-- Input source -->
         <source-picker v-model="inputSource" />
+
+        <!-- Input source (screenshot) -->
+        <template v-if="inputSource === Services.screenshot">
+            <screenshot-window v-model="screenshotWindow" />
+            <screenshot-method v-model="screenshotMethod" />
+        </template>
+
     </menu-list>
 </template>
 
 <script lang="ts" setup>
 import { useSetting } from '@frontend/stores/settings';
-import { SettingsKeys } from '@typed';
+import { Services, SettingsKeys } from '@typed';
 import 'vue-i18n'
 import SourcePicker from './source-picker.vue'
+import ScreenshotWindow from './screenshot-window.vue'
+import ScreenshotMethod from './screenshot-method.vue'
 
 const inputSource = useSetting(SettingsKeys.ServiceInputSourceService)
+const screenshotWindow = useSetting(SettingsKeys.ScreenshotServiceWindow)
+const screenshotMethod = useSetting(SettingsKeys.ScreenshotServiceMethod)
 </script>
 
 <style lang="scss" module>

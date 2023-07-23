@@ -99,5 +99,9 @@ import { computed } from 'vue';
         padding: 0.1rem 0.4rem;
         color: #fff;
     }
+
+    :global(.p-dropdown) {
+        max-width: 240px;
+    }
 }
 </style>

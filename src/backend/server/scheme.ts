@@ -1,7 +1,7 @@
 import { protocol } from 'electron'
 import { FastifyInstance, InjectOptions } from 'fastify'
 
-const BACKEND_SCHEME = 'backend'
+export const BACKEND_SCHEME = 'backend'
 protocol.registerSchemesAsPrivileged([{
     scheme: BACKEND_SCHEME,
     privileges: {

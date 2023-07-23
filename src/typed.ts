@@ -5,6 +5,8 @@ export enum SettingsKeys {
     ServiceFrequencyDelay = 'service.frequency.delay',
 
     ServiceInputSourceService = 'service.input-source.service',
+    ScreenshotServiceMethod = 'service.screenshot-service.method',
+    ScreenshotServiceWindow = 'service.screenshot-service.window',
 
     /** Backend */
     BackendEnabled = 'backend.enabled',
@@ -22,6 +24,10 @@ export interface SettingsStore {
 
     /** Service: Input Source */
     [SettingsKeys.ServiceInputSourceService]: Services,
+
+    /** Service: Screenshot */
+    [SettingsKeys.ScreenshotServiceWindow]: ServiceScreenshotWindowPreset | string,
+    [SettingsKeys.ScreenshotServiceMethod]: ServiceScreenshotMethod,
 
     /** Backend */
     [SettingsKeys.BackendEnabled]: boolean,
@@ -72,5 +78,27 @@ export const ServiceIntervalMs = {
     [ServiceInterval.RARELY]: 25_000,
 }
 
+export enum ServiceScreenshotMethod {
+    WINDOW_CAPTURE = 'WINDOW_CAPTURE',
+    SCREEN_CAPTURE = 'SCREEN_CAPTURE',
+}
+
+export enum ServiceScreenshotWindowPreset {
+    COD_APPLICATION = 'COD_APPLICATION',
+    FULL_SCREEN = 'FULL_SCREEN',
+}
+
+export interface ServiceScreenshotWindowItem {
+    version: ServiceScreenshotWindowItemVersion
+    title: string
+    path: string
+}
+
+export enum ServiceScreenshotWindowItemVersion {
+    v1 = 'v1'
+}
+
 export const SERVICE_INTERVAL_PAUSE = 5 * 60 * 1000
 
+export type JSONStringified = string
+export type TimeoutId = ReturnType<typeof setTimeout>

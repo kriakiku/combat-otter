@@ -1,10 +1,18 @@
-import { getActiveWindowList } from '@services/screenshot';
+import { screenshotServiceEndpoints } from './handlers/screenshot-service';
 import { initialize } from './server';
 
+const endpoints = [
+    ...screenshotServiceEndpoints
+]
+
 initialize((instance) => {
-    instance.get('/test', async (_, reply) => {
+    for (const endpoint of endpoints) {
+        instance.get(endpoint.path, endpoint.handler)
+    }
+
+    instance.get('/ping', async (_, reply) => {
         reply.send(
-            await getActiveWindowList()
+            'ok'
         )
     })
 })

@@ -1,6 +1,6 @@
 import { app } from 'electron'
 import Store from 'electron-store'
-import { SettingsStore, SettingsKeys, ServiceInterval, Services } from '@typed';
+import { SettingsStore, SettingsKeys, ServiceInterval, Services, ServiceScreenshotMethod, ServiceScreenshotWindowPreset } from '@typed';
 
 export const store = new Store<SettingsStore>({
     watch: true,
@@ -21,6 +21,10 @@ export const store = new Store<SettingsStore>({
 
         /** Service: Input Source */
         [SettingsKeys.ServiceInputSourceService]: Services.screenshot,
+
+        /** Service: Screenshot */
+        [SettingsKeys.ScreenshotServiceWindow]: ServiceScreenshotWindowPreset.COD_APPLICATION,
+        [SettingsKeys.ScreenshotServiceMethod]: ServiceScreenshotMethod.SCREEN_CAPTURE,
 
         /** Backend */
         [SettingsKeys.BackendEnabled]: true,

@@ -11,7 +11,7 @@ import { MdKeyboardarrowleftRound, MdKeyboardarrowrightRound, MdScreenshotmonito
 import { SiDiscord, SiObsstudio  } from "oh-vue-icons/icons/si";
 import { OiBlocked  } from "oh-vue-icons/icons/oi";
 import { LaGlobeEuropeSolid  } from "oh-vue-icons/icons/la";
-import { BiBalloon } from "oh-vue-icons/icons/bi";
+import { BiBalloon, BiSignpostFill, BiWindowDesktop } from "oh-vue-icons/icons/bi";
 import { RiAlarmLine, RiZzzFill } from 'oh-vue-icons/icons/ri';
 import enLocale from './i18n/en'
 import uaLocale from './i18n/ua'
@@ -72,7 +72,9 @@ addIcons(
     SiDiscord,
     OiBlocked,
     LaGlobeEuropeSolid,
-    BiBalloon, 
+    BiBalloon,
+    BiSignpostFill,
+    BiWindowDesktop,
     RiAlarmLine,
     RiZzzFill,
 );

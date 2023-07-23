@@ -1,4 +1,5 @@
 // import screenshot from 'screenshot-desktop';
+import { ServiceScreenshotWindowItem, ServiceScreenshotWindowItemVersion } from '@typed';
 import activeWin from 'active-win';
 // import { spawn } from 'node:child_process';
 // import { relative } from 'node:path'
@@ -30,55 +31,21 @@ import activeWin from 'active-win';
 
 // process.env.FFMPEG_PATH = ffmpegPath;
 
-export async function getActiveWindowList(): Promise<Array<any>> {
+export async function getActiveWindowList(): Promise<ServiceScreenshotWindowItem[]> {
     try {
-        // const windows = await activeWin()
+        const windows = [
+            await activeWin(),
+            ...await activeWin.getOpenWindows()
+        ]
 
-        // console.log('windows', windows);
-
-        // ffmpeg -f gdigrab -i "title=Steam" -vframes 1 -vcodec copy -f rawvideo out.bmp
-        // ffmpeg -f gdigrab -i title=Steam" -y -f mjpeg ./gg.jpg
-
-        // ffmpeg()
-        //     .on('start', (cmdline) => console.log(cmdline))
-        //     .input('title=Steam')
-        //     .inputFormat('gdigrab')
-        //     .frames(1)
-        //     .save('C:\\Users\\kriakiku\\Documents\\combat-otter\\gg.jpg')
-        //     .run()
-
-        console.log(activeWin)
-
-        return ['lol', await activeWin.getOpenWindows()];
-
-        // const child = spawn(ffmpegPath, ['-h'], { shell: true, stdio: 'inherit' });
-
-        // child.on('error', (error) => {
-        //     console.log('!!!!!', error)
-        // });
-    
-        // child.stdout.setEncoding('utf8');
-        // child.stdout.on('data', (data) => {
-        //     //Here is the output
-        //     data=data.toString();   
-        //     console.log('----', data);      
-        // });
-
-        // child.on('close', (code) => {
-        //     console.log('_____', code)
-        // });
-
-        // console.log(__dirname)
-        // console.log(ffmpegPath)
-        // console.log(ffmpegPath.replace(__dirname, '.'))
-        // // console.log(relative(ffmpegPath, __dirname));
-
-        // execFile('./ffmpeg.exe', ['-h'], (...args) => {
-        //     console.log(...args)
-        // })
-
-        // return windows as any
-
+        return windows
+            .filter(item => !!item)
+            .filter((item, index) => windows.findIndex(rightItem => rightItem.id === item.id) === index)
+            .map(item => ({
+                version: ServiceScreenshotWindowItemVersion.v1,
+                title: item.title,
+                path: item.owner?.path
+            }));
     } catch (reason) {
         console.error('[services:screenshot:getActiveWindowList] Failed to get list of active windows', reason);
         return [];
