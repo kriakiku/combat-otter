@@ -90,3 +90,6 @@ typings/
 
 # Electron-Forge
 out/
+
+# Dynamic forge config
+drizzle.config.json
