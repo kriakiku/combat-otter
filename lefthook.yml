@@ -1,0 +1,34 @@
+# pre-push:
+#   commands:
+#     tests:
+#       tags: run tests
+#       run: yarn test
+
+pre-commit:
+  parallel: true
+  commands:
+    # Linter
+    eslint:
+      tags: lint
+      glob: "*.{ts,vue}"
+      run: yarn eslint {staged_files}
+
+yarn-postinstall:
+  parallel: true
+  commands:
+    # Apply npm packages patches 
+    patch-package:
+      tags: patch
+      run: yarn patch-package
+
+yarn-prepare:
+  parallel: true
+  commands:
+    # Generate database migrations
+    migrations:
+      tags: database
+      run: yarn database:generate
+    # Stop tracking changes in drizzle.config.json file
+    drizzle-config:
+      tags: database
+      run: git update-index --assume-unchanged drizzle.config.json
