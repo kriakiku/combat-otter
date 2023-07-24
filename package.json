@@ -8,7 +8,6 @@
     "postinstall": "lefthook run yarn-postinstall",
     "prepare": "lefthook run yarn-prepare",
     "start": "electron-forge start",
-    "database:generate": "drizzle-kit generate:sqlite --config=./drizzle.config.json",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",

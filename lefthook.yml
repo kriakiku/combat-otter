@@ -25,9 +25,9 @@ yarn-prepare:
   parallel: true
   commands:
     # Generate database migrations
-    migrations:
+    generate-migrations:
       tags: database
-      run: yarn database:generate
+      run: drizzle-kit generate:sqlite --config=./drizzle.config.json
     # Stop tracking changes in drizzle.config.json file
     drizzle-config:
       tags: database
