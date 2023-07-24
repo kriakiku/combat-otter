@@ -22,5 +22,12 @@
   },
   "plugins": [
     "@typescript-eslint"
+  ],
+  "ignorePatterns": [
+    "forge.config.ts",
+    "webpack.main.ts",
+    "webpack.plugins.ts",
+    "webpack.rerender.ts",
+    "webpack.rules.ts"
   ]
 }

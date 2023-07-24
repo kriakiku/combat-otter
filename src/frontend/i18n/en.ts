@@ -97,6 +97,10 @@ export default {
                 }
             }
         },
+
+        'area-selector': {
+            title: 'Area',
+        }
     
     },
 

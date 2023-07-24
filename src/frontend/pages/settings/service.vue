@@ -20,10 +20,8 @@
                 <!-- Input source -->
                 <service-input-source-picker />
 
-                <!-- Processing -->
-            
-                <!-- Specific content -->
-                GGWP
+                <!-- Area selector -->
+                <service-area-selector />
             </div>
         </template>
 

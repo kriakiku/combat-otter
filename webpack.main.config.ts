@@ -1,5 +1,6 @@
 import type { Configuration } from 'webpack';
-import { join } from 'node:path'
+import CopyWebpackPlugin from 'copy-webpack-plugin';
+import { join, resolve } from 'node:path'
 
 import { rules } from './webpack.rules';
 
@@ -13,6 +14,7 @@ export const mainConfig: Configuration = {
   // Put your normal webpack config below here
   module: {
     rules,
+
   },
   // [solve] active-win > node-pre-gyp [deps]
   externals: ['nock', 'mock-aws-s3', 'aws-sdk'],
@@ -23,7 +25,18 @@ export const mainConfig: Configuration = {
       "@config": join(__dirname, './src/config'),
       "@services": join(__dirname, './src/services'),
       "@modules": join(__dirname, './src/modules'),
+      "@database": join(__dirname, './src/database'),
       "@typed": join(__dirname, './src/typed.ts'),
     }
   },
+  plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+          {
+            from: resolve(__dirname, 'src', 'database', 'migrations'),
+            to: resolve(__dirname, '.webpack/main', 'migrations')
+          }
+      ]
+    })
+  ]
 };

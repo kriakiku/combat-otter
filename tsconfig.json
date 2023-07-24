@@ -17,6 +17,8 @@
       "@config/*": ["./src/config/*"],
       "@services/*": ["./src/services/*"],
       "@modules/*": ["./src/modules/*"],
+      "@database/*": ["./src/database/*"],
+      "@database": ["./src/database/index.ts"],
       "@typed": ["./src/typed.ts"],
       "*": ["node_modules/*", "./src/*.d.ts"],
     }

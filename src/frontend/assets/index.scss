@@ -25,6 +25,11 @@ body {
   color: #fff;
   max-width: 100%;
   width: 100%;
+
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+  }
 }
 
 :global(.p-dropdown), :global(.p-dropdown-panel) {
@@ -39,6 +44,10 @@ body {
   font-family: var(--main-font);
 }
 
+/**
+ * Scrollbar
+ */
+
 ::-webkit-scrollbar {
   width: 12px;
 }
@@ -51,7 +60,7 @@ body {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: $secondColor;
-  border-radius: 4px 0 0 4px;
+  border-radius: 0;
 }
 ::-webkit-scrollbar-track:window-inactive {
   background-color: $bgColor;

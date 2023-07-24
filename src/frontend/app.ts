@@ -30,6 +30,7 @@ import MenuList from './components/menu-list.vue'
 import MenuItem from './components/menu-item.vue'
 import SettingsLanguagePicker from './components/settings/language-picker.vue'
 import ServiceFrequencyPicker from './components/service/frequency/picker.vue'
+import ServiceAreaSelector from './components/service/area-selector/area-selector.vue'
 import ServiceInputSourcePicker from './components/service/input-source/picker.vue'
 
 import IndexPage from './pages/index.vue'
@@ -95,6 +96,7 @@ app.component('menu-item', MenuItem)
 app.component('settings-language-picker', SettingsLanguagePicker)
 app.component('service-frequency-picker', ServiceFrequencyPicker)
 app.component('service-input-source-picker', ServiceInputSourcePicker)
+app.component('service-area-selector', ServiceAreaSelector)
 
 /** External components */
 app.use(createPinia());

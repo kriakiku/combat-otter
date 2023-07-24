@@ -1,0 +1,14 @@
+diff --git a/node_modules/drizzle-kit/index.cjs b/node_modules/drizzle-kit/index.cjs
+index 71b6752..1cc1c01 100644
+--- a/node_modules/drizzle-kit/index.cjs
++++ b/node_modules/drizzle-kit/index.cjs
+@@ -10542,7 +10542,8 @@ var require_node2 = __commonJS({
+         }
+         var configString = readFileSync4(configFilePath);
+         var cleanedJson = StripBom(configString);
+-        var config = JSON5.parse(cleanedJson);
++        var config = {};
++
+         var extendedConfig = config.extends;
+         if (extendedConfig) {
+           if (typeof extendedConfig === "string" && extendedConfig.indexOf(".json") === -1) {
