@@ -21,7 +21,7 @@ console.log(
   app.getPath('userData')
 )
 
-const isProd = !app.isPackaged;
+const isProd = app.isPackaged;
 const devToolsPadding = isProd ? 0 : 610
 
 const createWindow = async (): Promise<void> => {

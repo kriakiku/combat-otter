@@ -92,6 +92,12 @@ export interface ServiceScreenshotWindowItem {
     version: ServiceScreenshotWindowItemVersion
     title: string
     path: string
+    bounds: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }
 }
 
 export enum ServiceScreenshotWindowItemVersion {

@@ -10,7 +10,7 @@ pre-commit:
     # Linter
     eslint:
       tags: lint
-      glob: "*.{ts,vue}"
+      glob: "*.{ts}"
       run: yarn eslint {staged_files}
 
 yarn-postinstall:

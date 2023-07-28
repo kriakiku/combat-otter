@@ -5,9 +5,11 @@
     "node": true
   },
   "rules": {
-    "import/no-unresolved": [0]
+    "import/no-unresolved": [0],
+    "vue/multi-word-component-names": [0]
   },
   "extends": [
+    "plugin:vue/vue3-essential",
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",

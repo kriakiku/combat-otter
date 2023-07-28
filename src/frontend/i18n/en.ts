@@ -62,7 +62,7 @@ export default {
                         options: {
                             [ServiceScreenshotMethod.SCREEN_CAPTURE]: {
                                 title: '👍 Screen capture',
-                                description: 'Use this capture method if the "Window capture" mode does not work for you. The capture method has excellent compatibility, but will not be able to capture a minimized window',
+                                description: 'The capture method has excellent compatibility, but will not be able to capture a window out of focus. In the future we will add the "Window capture" mode.',
                             },
                             [ServiceScreenshotMethod.WINDOW_CAPTURE]: {
                                 title: '🔥 Window capture',

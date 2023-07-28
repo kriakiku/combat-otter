@@ -11,4 +11,3 @@ export const screenshotServiceEndpoints: Array<FastifyHandler<void>> = [
         }
     }
 ]
-

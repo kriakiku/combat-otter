@@ -1,3 +1,25 @@
+import { FastifyHandler } from "@backend/typed";
+import { inputService } from "@services/index";
+
+export const servicesEndpoints: Array<FastifyHandler<void>> = [
+    // Current input
+    {
+        path: '/services/get-input',
+        handler: async (_, reply) => {
+            const input = await inputService.pickedService.getInput();
+
+            if (input === null) {
+                reply.status(404);
+                reply.send();
+                return;
+            }
+
+            reply.type('image/jpeg');
+            reply.send(input);
+        }
+    }
+]
+
 // import * as obsService from "../../services/obs";
 // import * as screenshotService from "../../services/screenshot";
 // import * as twitchService from "../../services/twitch";
@@ -44,4 +66,4 @@
 //         reply.send(input);
 //     }
 // }
-export const gg = '';
+// export const gg = '';

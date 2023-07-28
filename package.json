@@ -11,7 +11,7 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "eslint --ext .ts,.tsx ."
+    "lint": "eslint --ext .ts,.tsx ./src"
   },
   "keywords": [],
   "author": {
@@ -36,8 +36,9 @@
     "css-loader": "^6.0.0",
     "drizzle-kit": "^0.19.10",
     "electron": "25.3.0",
-    "eslint": "^8.0.1",
+    "eslint": "^8.46.0",
     "eslint-plugin-import": "^2.25.0",
+    "eslint-plugin-vue": "^9.15.1",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "lefthook": "^1.4.7",
     "node-loader": "^2.0.0",

@@ -19,6 +19,7 @@
             <dropdown
                 v-model="method"
                 :options="options"
+                disabled
             >
                 <!-- Picked -->
                 <template #value="{ value }">

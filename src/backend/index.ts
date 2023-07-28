@@ -1,8 +1,10 @@
 import { screenshotServiceEndpoints } from './handlers/screenshot-service';
+import { servicesEndpoints } from './handlers/services';
 import { initialize } from './server';
 
 const endpoints = [
-    ...screenshotServiceEndpoints
+    ...screenshotServiceEndpoints,
+    ...servicesEndpoints
 ]
 
 initialize((instance) => {
