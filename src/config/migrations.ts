@@ -6,7 +6,7 @@ export const store = new Store<SettingsStore>({
     watch: true,
     accessPropertiesByDotNotation: false,
     beforeEachMigration: (_, context) => {
-        console.log(`[Config] migrate from ${context.fromVersion} → ${context.toVersion}`);
+        console.log(`[Config:beforeEachMigration] migrate from ${context.fromVersion} => ${context.toVersion}`);
     },
 	migrations: {
 		'0.0.1': store => {

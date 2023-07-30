@@ -1,5 +1,5 @@
 import { paths, bins } from "ffmpeg-static-electron-forge";
-import ffmpegWrapper from "fluent-ffmpeg";
+import ffmpegWrapper, { ffprobe as ffprobeWrapper } from "fluent-ffmpeg";
 import path from "path";
 
 let ffmpegPath: string, ffprobePath: string;
@@ -20,12 +20,4 @@ ffmpegWrapper.setFfmpegPath(ffmpegPath);
 ffmpegWrapper.setFfprobePath(ffprobePath);
 
 export const ffmpeg = ffmpegWrapper;
-
-
-// import ffmpegWrapper from "fluent-ffmpeg";
-// import { paths } from "ffmpeg-static-electron-forge";
-
-// ffmpegWrapper.setFfmpegPath(paths.ffmpegPath.replace("app.asar", "app.asar.unpacked"));
-// ffmpegWrapper.setFfprobePath(paths.ffprobePath.replace("app.asar", "app.asar.unpacked"));
-
-// export const ffmpeg = ffmpegWrapper;
+export const ffprobe = ffprobeWrapper;

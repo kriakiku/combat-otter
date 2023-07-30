@@ -25,7 +25,6 @@ export const useScreenshotWindowsStore = defineStore('screenshot-windows', {
                 for (const window of windows) {
                     const isExists = this.windows.some((item: ServiceScreenshotWindowItem) => item.path === window.path && item.title === item.title);
                     if (!isExists) {
-                        console.log(window)
                         this.windows.push(window)
                     }
                 }

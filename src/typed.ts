@@ -8,6 +8,9 @@ export enum SettingsKeys {
     ScreenshotServiceMethod = 'service.screenshot-service.method',
     ScreenshotServiceWindow = 'service.screenshot-service.window',
 
+    ServiceAreaGridWidth = 'service.area.grid.width',
+    ServiceAreaGridHeight = 'service.area.grid.height',
+
     /** Backend */
     BackendEnabled = 'backend.enabled',
     BackendPort = 'backend.port',
@@ -28,6 +31,8 @@ export interface SettingsStore {
     /** Service: Screenshot */
     [SettingsKeys.ScreenshotServiceWindow]: ServiceScreenshotWindowPreset | string,
     [SettingsKeys.ScreenshotServiceMethod]: ServiceScreenshotMethod,
+
+    /** Service: Area */
 
     /** Backend */
     [SettingsKeys.BackendEnabled]: boolean,
@@ -105,6 +110,11 @@ export enum ServiceScreenshotWindowItemVersion {
 }
 
 export const SERVICE_INTERVAL_PAUSE = 5 * 60 * 1000
+
+export enum ServiceAreaSteps {
+    None,
+    CaptureImage
+}
 
 export type JSONStringified = string
 export type TimeoutId = ReturnType<typeof setTimeout>

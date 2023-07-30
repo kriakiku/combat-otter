@@ -1,4 +1,4 @@
-import { ServiceInterval, Services, ServiceScreenshotMethod, ServiceScreenshotWindowPreset } from "@typed";
+import { ServiceAreaSteps, ServiceInterval, Services, ServiceScreenshotMethod, ServiceScreenshotWindowPreset } from "@typed";
 
 export default {
     languageTitle: 'English',
@@ -100,6 +100,17 @@ export default {
 
         'area-selector': {
             title: 'Area',
+            actions: {
+                reset: 'Reconfigure',
+                continue: 'Continue'
+            },
+            [ServiceAreaSteps.None]: {
+                disclaimer: 'The default settings are adapted for playing in full screen mode on 16:9 monitors. If you are playing at 1:1/21:9 or in windowed mode, you will need to manually area configure.',
+            },
+            [ServiceAreaSteps.CaptureImage]: {
+                subtitle: 'Step I. Image Capture',
+                disclaimer: 'To capture an image — go to the game window (based on your "Input Source" setting) and wait 5 seconds. If the capture is successful, the image will be displayed. You will need to switch to ranked game mode (WZ or MW doesn\'t matter).'
+            }
         }
     
     },
