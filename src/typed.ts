@@ -5,8 +5,16 @@ export enum SettingsKeys {
     ServiceFrequencyDelay = 'service.frequency.delay',
 
     ServiceInputSourceService = 'service.input-source.service',
+
+    /** Service: Screenshot */
     ScreenshotServiceMethod = 'service.screenshot-service.method',
     ScreenshotServiceWindow = 'service.screenshot-service.window',
+
+    /** Service: OBS */
+    OBSServiceConnectionServer = 'service.obs-service.connection.server', 
+    OBSServiceConnectionPort = 'service.obs-service.connection.port', 
+    OBSServiceConnectionPassword = 'service.obs-service.connection.password',
+    OBSServiceSource = 'service.obs-service.source',
 
     /** Service: Area */
     ServiceGridAreaMode = 'service.grid.area.mode',
@@ -34,6 +42,12 @@ export interface SettingsStore {
     /** Service: Screenshot */
     [SettingsKeys.ScreenshotServiceWindow]: ServiceScreenshotWindowPreset | string,
     [SettingsKeys.ScreenshotServiceMethod]: ServiceScreenshotMethod,
+
+    /** Service: OBS */
+    [SettingsKeys.OBSServiceConnectionServer]: string,
+    [SettingsKeys.OBSServiceConnectionPort]: number,
+    [SettingsKeys.OBSServiceConnectionPassword]: string,
+    [SettingsKeys.OBSServiceSource]: string,
 
     /** Service: Area */
     [SettingsKeys.ServiceGridAreaMode]: AreaPosition,

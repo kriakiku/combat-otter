@@ -25,6 +25,12 @@ export const store = new Store<SettingsStore>({
         /** Service: Screenshot */
         [SettingsKeys.ScreenshotServiceWindow]: ServiceScreenshotWindowPreset.COD_APPLICATION,
         [SettingsKeys.ScreenshotServiceMethod]: ServiceScreenshotMethod.SCREEN_CAPTURE,
+
+        /** Service: OBS */
+        [SettingsKeys.OBSServiceConnectionServer]: '127.0.0.1',
+        [SettingsKeys.OBSServiceConnectionPort]: 4455,
+        [SettingsKeys.OBSServiceConnectionPassword]: '',
+        [SettingsKeys.OBSServiceSource]: '',
         
         /** Service: Area */
         [SettingsKeys.ServiceGridAreaMode]: {

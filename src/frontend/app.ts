@@ -3,18 +3,24 @@ import { createI18n } from 'vue-i18n'
 import { createRouter, createWebHashHistory } from 'vue-router'
 import { createPinia } from 'pinia'
 import timeago from 'vue-timeago3'
+
 import PrimeVue from 'primevue/config';
 import Dropdown from 'primevue/dropdown';
 import InputSwitch from 'primevue/inputswitch';
+import InputText from 'primevue/inputtext';
+import InputNumber from 'primevue/inputnumber';
 import UserButton from 'primevue/button';
 import Dialog from 'primevue/dialog';
+
+
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import { MdKeyboardarrowleftRound, MdKeyboardarrowrightRound, MdScreenshotmonitor, MdFibermanualrecordSharp, MdImagenotsupportedSharp, MdCloseRound } from "oh-vue-icons/icons/md";
 import { SiDiscord, SiObsstudio  } from "oh-vue-icons/icons/si";
 import { OiBlocked  } from "oh-vue-icons/icons/oi";
 import { LaGlobeEuropeSolid  } from "oh-vue-icons/icons/la";
-import { BiBalloon, BiSignpostFill, BiWindowDesktop, BiCheckLg } from "oh-vue-icons/icons/bi";
+import { BiBalloon, BiSignpostFill, BiWindowDesktop, BiCheckLg, BiEthernet } from "oh-vue-icons/icons/bi";
 import { RiAlarmLine, RiZzzFill, RiWindowLine } from 'oh-vue-icons/icons/ri';
+
 import enLocale from './i18n/en'
 import uaLocale from './i18n/ua'
 import ruLocale from './i18n/ru'
@@ -31,6 +37,7 @@ import RankSummary from './components/rank-summary.vue'
 import MenuList from './components/menu-list.vue'
 import MenuItem from './components/menu-item.vue'
 import TimeAgo from './components/time-ago.vue'
+import InputBlock from './components/input-block.vue'
 import SettingsLanguagePicker from './components/settings/language-picker.vue'
 import ServiceFrequencyPicker from './components/service/frequency/picker.vue'
 import ServiceAreaSelector from './components/service/area-selector/area-selector.vue'
@@ -86,6 +93,7 @@ addIcons(
     RiAlarmLine,
     RiWindowLine,
     BiCheckLg,
+    BiEthernet,
     RiZzzFill,
 );
 
@@ -101,6 +109,7 @@ app.component('rank-summary', RankSummary)
 app.component('menu-list', MenuList)
 app.component('menu-item', MenuItem)
 app.component('time-ago', TimeAgo)
+app.component('input-block', InputBlock)
 
 /** Components with logic */
 app.component('settings-language-picker', SettingsLanguagePicker)
@@ -113,6 +122,8 @@ app.use(createPinia());
 app.use(PrimeVue);
 app.component('dropdown', Dropdown)
 app.component('input-switch', InputSwitch)
+app.component('input-text', InputText)
+app.component('input-number', InputNumber)
 app.component('user-button', UserButton)
 app.component('dialog-window', Dialog)
 

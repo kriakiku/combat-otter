@@ -16,7 +16,11 @@
 
         <!-- Input source (OBS) -->
         <template v-if="inputSource === Services.obs">
-
+            <obs-connection
+                v-model:server="obsConnectionServer"
+                v-model:port="obsConnectionPort"
+                v-model:password="obsConnectionPassword"
+            />
         </template>
 
     </menu-list>
@@ -29,8 +33,12 @@ import 'vue-i18n'
 import SourcePicker from './source-picker.vue'
 import ScreenshotWindow from './screenshot/screenshot-window.vue'
 import ScreenshotMethod from './screenshot/screenshot-method.vue'
+import ObsConnection from './obs/obs-connection.vue'
 
 const inputSource = useSetting(SettingsKeys.ServiceInputSourceService)
 const screenshotWindow = useSetting(SettingsKeys.ScreenshotServiceWindow)
 const screenshotMethod = useSetting(SettingsKeys.ScreenshotServiceMethod)
+const obsConnectionServer = useSetting(SettingsKeys.OBSServiceConnectionServer)
+const obsConnectionPort = useSetting(SettingsKeys.OBSServiceConnectionPort)
+const obsConnectionPassword = useSetting(SettingsKeys.OBSServiceConnectionPassword)
 </script>

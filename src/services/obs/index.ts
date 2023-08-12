@@ -4,6 +4,14 @@ import { InputService } from '@services/typed';
 
 // const obs = new OBSWebSocket();
 
+export async function getSourceList() {
+    void 0;
+}
+
+export async function connectionStatus() {
+    void 0;
+}
+
 /**
  * OBS service
  */

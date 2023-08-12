@@ -96,7 +96,30 @@ export default {
                 [Services.obs]: {
                     title: 'OBS Integration',
                     description:
-                        'If you stream via OBS – you can integrate screen capture via OBS. This is the best solution for you'
+                        'If you stream via OBS – you can integrate screen capture via OBS. This is the best solution for you.',
+                    connection: {
+                        title: 'Connection',
+                        description: 'OBS WebSocket connection settings. 🥷 Please don\'t forget to perform the configuration.',
+                        disclaimer: 'As shown in the screenshot, you need to enable the "WebSocket Server" in OBS. At the next step, you need to transfer the connection data (IV step).',
+                        actions: {
+                            reconfigure: 'Reconfigure',
+                            continue: 'Continue',
+                        },
+                        form: {
+                            server: {
+                                title: 'Server IP',
+                                description: 'Edit this field only if you are unable to connect to OBS. Or if OBS is running on another device (I have no idea who does this).'
+                            },
+                            port: {
+                                title: 'Server Port',
+                                description: 'By default, port 4455 is set in OBS. Change the value if it is different from yours.'
+                            },
+                            password: {
+                                title: 'Server Password',
+                                description: 'Leave the field empty if you have disabled authentication in the WebSocket server settings.'
+                            }
+                        }
+                    }
                 }
             }
         },

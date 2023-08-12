@@ -1,9 +1,11 @@
 import { screenshotServiceEndpoints } from './handlers/screenshot-service';
+import { obsServiceEndpoints } from './handlers/obs-service';
 import { servicesEndpoints } from './handlers/services';
 import { initialize } from './server';
 
 const endpoints = [
     ...screenshotServiceEndpoints,
+    ...obsServiceEndpoints,
     ...servicesEndpoints
 ]
 
