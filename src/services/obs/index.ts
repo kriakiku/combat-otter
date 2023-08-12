@@ -1,7 +1,32 @@
+import { InputService } from '@services/typed';
 // import OBSWebSocket, {EventSubscription} from 'obs-websocket-js';
 // import { config } from '../../config';
 
 // const obs = new OBSWebSocket();
+
+/**
+ * OBS service
+ */
+class OBSService implements InputService {
+
+    /** Start service */
+    public start() {
+        console.log('[services:obs:start] Starting service');
+    }
+
+    /** Stop service */
+    public stop() {
+        console.log('[services:obs:stop] Stopping service');
+    }
+
+    /** Get input image */
+    public async getInput() {
+        return Promise.resolve(null);
+    }
+}
+
+export const obsService = new OBSService();
+
 
 // /** Connect to server */
 // async function connect() {
@@ -85,4 +110,3 @@
 //         return null;
 //     }
 // }
-export const gg = ''

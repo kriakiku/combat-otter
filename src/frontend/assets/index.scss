@@ -33,6 +33,21 @@ body {
 }
 
 /**
+ * Dialog
+ */
+:global(.p-dialog) {
+  :global(.p-dialog-header),
+  :global(.p-dialog-footer),
+  :global(.p-dialog-content) {
+    background-color: $bgColor;
+  }
+
+  :global(.p-dialog-header) {
+    padding: 1rem 1.5rem 0 1.5rem;
+  }
+}
+
+/**
  * Select area
  */
 :global(.area-select) {
@@ -54,6 +69,7 @@ body {
     color: rgba(255, 255, 255, 0.8);
   }
 }
+
 :global(.vdr-container) {
   border-color: transparent !important;
 }

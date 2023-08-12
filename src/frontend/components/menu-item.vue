@@ -39,7 +39,6 @@
 
 <script lang="ts" setup>
 import 'vue-i18n'
-import { computed } from 'vue';
 </script>
 
 <style lang="scss" module>

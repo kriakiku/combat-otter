@@ -50,6 +50,7 @@ export default {
 
         'input-source': {
             title: 'Input source',
+            edit: 'Pick source',
             sources: {
                 [Services.screenshot]: {
                     title: 'Screen capture',
@@ -75,11 +76,13 @@ export default {
                         presetsTitle: 'Presets',
                         presets: {
                             [ServiceScreenshotWindowPreset.COD_APPLICATION]: {
-                                title: '🔥 Automatic game detection',
+                                title: 'Automatic game detection',
+                                emoji: '🔥',
                                 description: 'The best choice! Automatic detection of the game running through Steam or Battle.net'
                             },
                             [ServiceScreenshotWindowPreset.FULL_SCREEN]: {
-                                title: '💩 Capture all screens',
+                                title: 'Capture all screens',
+                                emoji: '💩',
                                 description: 'We do not recommend using this method. It can lead to false positives when viewing streams'
                             }
                         },

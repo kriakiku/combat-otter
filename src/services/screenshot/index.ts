@@ -1,4 +1,3 @@
-// import screenshot from 'screenshot-desktop';
 import { ServiceScreenshotMethod, ServiceScreenshotWindowItem, ServiceScreenshotWindowItemVersion, ServiceScreenshotWindowPreset, SettingsKeys } from '@typed';
 import activeWin from 'active-win';
 import { config } from '@config';
@@ -6,35 +5,6 @@ import { ffmpeg } from '@modules/ffmpeg';
 import { stream2buffer } from '@services/helpers';
 import { InputService } from '../typed';
 
-// import { spawn } from 'node:child_process';
-// import { relative } from 'node:path'
-// import { config } from '@config';
-
-// console.log('ffmpegPath', ffmpegPath.path.replace('undefined', 'C:\\Users\\kriakiku\\Documents\\combat-otter\\.webpack\\main\\native_modules\\'))
-// // console.log('ffprobePath', ffprobePath.path)
-
-// ffmpeg.setFfmpegPath(ffmpegPath.path.replace('undefined', 'C:\\Users\\kriakiku\\Documents\\combat-otter\\.webpack\\main\\native_modules\\'));
-
-// ffmpeg.setFfprobePath(ffprobePath.path);
-
-// ./ffmpeg.exe -f gdigrab -offset_x 0 -offset_y 0 -video_size 5120x1440 -i desktop -pix_fmt yuv420p -vcodec libx264 -profile:v main -crf 16 outfile.mp4
-// ./ffmpeg.exe -f gdigrab -i "title=Steam" -vframes 1 -vcodec copy -f rawvideo out.bmp
-// ./ffmpeg.exe -rtbufsize 1500M -f gdigrab -framerate 29.97 -draw_mouse 0 -offset_x 13 -offset_y 103 -video_size 1280x720 -i desktop -pix_fmt yuv420p -c:v libx264 -preset ultrafast ./myvideo.mp4
-
-// ffmpeg -f gdigrab -framerate 30 -i title="german.avi - VLC media player" -b:v 3M  germ.flv
-
-/**
- * Screenshot of window (has black screen bug when rendered on GPU)
-        ffmpeg()
-            .on('start', (cmdline) => console.log(cmdline))
-            .input('title=Steam')
-            .inputFormat('gdigrab')
-            .frames(1)
-            .save('C:\\Users\\kriakiku\\Documents\\combat-otter\\gg.jpg')
-            .run()
- */
-
-// process.env.FFMPEG_PATH = ffmpegPath;
 
 export async function getActiveWindowList(): Promise<ServiceScreenshotWindowItem[]> {
     try {

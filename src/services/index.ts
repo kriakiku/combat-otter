@@ -2,9 +2,11 @@ import { config } from "@config";
 import { screenshotService } from "./screenshot";
 import { InputService as InputServiceInterface } from "./typed";
 import { SettingsKeys, Services } from "@typed";
+import { obsService } from "./obs";
 
 class InputService {
     public screenshotService = screenshotService
+    public obsService = obsService;
     public pickedService: InputServiceInterface | null = null;
 
     constructor() {
@@ -25,8 +27,10 @@ class InputService {
                 case Services.screenshot:
                     this.pickedService = this.screenshotService;
                     break;
-                default:
-                    this.pickedService = null;
+                case Services.obs:
+                    this.pickedService = this.obsService;
+                // default:
+                //     this.pickedService = null;
             }
 
             await this.pickedService?.start();

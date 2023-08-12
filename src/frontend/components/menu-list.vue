@@ -2,7 +2,7 @@
     <div
         :class="$style.container"
     >
-        <sub-title>
+        <sub-title v-if="$slots.title">
             <slot name="title" />
         </sub-title>
 

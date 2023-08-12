@@ -7,13 +7,14 @@ import PrimeVue from 'primevue/config';
 import Dropdown from 'primevue/dropdown';
 import InputSwitch from 'primevue/inputswitch';
 import UserButton from 'primevue/button';
+import Dialog from 'primevue/dialog';
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import { MdKeyboardarrowleftRound, MdKeyboardarrowrightRound, MdScreenshotmonitor, MdFibermanualrecordSharp, MdImagenotsupportedSharp, MdCloseRound } from "oh-vue-icons/icons/md";
 import { SiDiscord, SiObsstudio  } from "oh-vue-icons/icons/si";
 import { OiBlocked  } from "oh-vue-icons/icons/oi";
 import { LaGlobeEuropeSolid  } from "oh-vue-icons/icons/la";
 import { BiBalloon, BiSignpostFill, BiWindowDesktop, BiCheckLg } from "oh-vue-icons/icons/bi";
-import { RiAlarmLine, RiZzzFill } from 'oh-vue-icons/icons/ri';
+import { RiAlarmLine, RiZzzFill, RiWindowLine } from 'oh-vue-icons/icons/ri';
 import enLocale from './i18n/en'
 import uaLocale from './i18n/ua'
 import ruLocale from './i18n/ru'
@@ -83,6 +84,7 @@ addIcons(
     BiSignpostFill,
     BiWindowDesktop,
     RiAlarmLine,
+    RiWindowLine,
     BiCheckLg,
     RiZzzFill,
 );
@@ -112,6 +114,7 @@ app.use(PrimeVue);
 app.component('dropdown', Dropdown)
 app.component('input-switch', InputSwitch)
 app.component('user-button', UserButton)
+app.component('dialog-window', Dialog)
 
 app.use(i18n)
 app.use(router)
