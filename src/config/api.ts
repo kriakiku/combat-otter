@@ -22,6 +22,15 @@ const updateHandler = (_: IpcMainEvent, key: SettingsKeys, value: unknown) => {
         console.log(`[Config:api:update] Failed to update setting "${key}"`, e)
     }
 }
+const resetHandler = (event: IpcMainEvent, key: SettingsKeys) => {
+    try {
+        store.reset(key);
+        event.reply('settings:updated', store.store);
+        console.log(`[Config:api:reset] Settings "${key}" restored`)
+    } catch (e) {
+        console.log(`[Config:api:reset] Failed to restore setting "${key}"`, e)
+    }
+}
 
 /** 
  * Subscriptions (ipc)
@@ -29,6 +38,7 @@ const updateHandler = (_: IpcMainEvent, key: SettingsKeys, value: unknown) => {
  */
 ipcMain.on('settings:subscribe', updateSubscribe);
 ipcMain.on('settings:update', updateHandler);
+ipcMain.on('settings:reset', resetHandler);
 
 /**
  * Subscription (config)

@@ -32,6 +32,32 @@ body {
   }
 }
 
+/**
+ * Select area
+ */
+:global(.area-select) {
+  border: 0.14em dashed #aa00f7;
+  background-color: #00000054;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.05);
+  font-size: 0.6rem;
+  user-select: none;
+  text-align: center;
+  line-height: 1.01em;
+  font-weight: bold;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.8);
+  }
+}
+:global(.vdr-container) {
+  border-color: transparent !important;
+}
+
 :global(.p-dropdown), :global(.p-dropdown-panel) {
   background: $bgColor;
 }

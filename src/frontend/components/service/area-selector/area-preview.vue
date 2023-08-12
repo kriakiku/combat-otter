@@ -1,14 +1,19 @@
 <template>
-    <surface :class="[
-        $style.container,
-        step === ServiceAreaSteps.None && $style.containerSmall,
-    ]">
+    <surface
+        :class="[
+            $style.container,
+            step === ServiceAreaSteps.None && $style.containerSmall,
+        ]"
+    >
         <!-- No image -->
-        <v-icon v-if="!$slots.preview" name="md-imagenotsupported-sharp" scale="2.4" />
+        <v-icon v-if="!preview" name="md-imagenotsupported-sharp" scale="2.4" />
         
-        <!-- Preview -->
-        <div v-else :class="$style.preview">
-            <slot name="preview" />
+        <!-- Preview & Area picker -->
+        <div :class="$style.preview" v-else>
+            <div :class="$style.previewInner">
+                <img :src="preview" />
+                <slot name="area" />
+            </div>
         </div>
         
         <!-- Record overlay -->
@@ -26,9 +31,12 @@
 
 <script setup lang="ts">
 import { ServiceAreaSteps } from '@typed';
+import { ref } from 'vue';
+import { useResizeObserver } from '@vueuse/core';
 
-const { step, updatedAt } = defineProps<{
+const { step, updatedAt, preview } = defineProps<{
     step: ServiceAreaSteps,
+    preview?: string,
     updatedAt?: Date
 }>()
 </script>
@@ -37,7 +45,7 @@ const { step, updatedAt } = defineProps<{
 .container {
     position: relative;
     display: flex;
-    height: 650px;
+    height: 780px;
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -95,5 +103,11 @@ const { step, updatedAt } = defineProps<{
         object-fit: contain;
         margin: 0 auto;
     }
+}
+
+.previewInner {
+    position: relative;
+    display: flex;
+    margin: 0 auto;
 }
 </style>

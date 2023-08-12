@@ -8,8 +8,11 @@ export enum SettingsKeys {
     ScreenshotServiceMethod = 'service.screenshot-service.method',
     ScreenshotServiceWindow = 'service.screenshot-service.window',
 
-    ServiceAreaGridWidth = 'service.area.grid.width',
-    ServiceAreaGridHeight = 'service.area.grid.height',
+    /** Service: Area */
+    ServiceGridAreaMode = 'service.grid.area.mode',
+    ServiceGridAreaRank = 'service.grid.area.rank',
+    ServiceGridAreaSR = 'service.grid.area.sr',
+    ServiceGridAreaLevel = 'service.grid.area.level',
 
     /** Backend */
     BackendEnabled = 'backend.enabled',
@@ -33,6 +36,10 @@ export interface SettingsStore {
     [SettingsKeys.ScreenshotServiceMethod]: ServiceScreenshotMethod,
 
     /** Service: Area */
+    [SettingsKeys.ServiceGridAreaMode]: AreaPosition,
+    [SettingsKeys.ServiceGridAreaRank]: AreaPosition,
+    [SettingsKeys.ServiceGridAreaSR]: AreaPosition,
+    [SettingsKeys.ServiceGridAreaLevel]: AreaPosition,
 
     /** Backend */
     [SettingsKeys.BackendEnabled]: boolean,
@@ -40,6 +47,17 @@ export interface SettingsStore {
 
     /** User settings */
     [SettingsKeys.UserRawLocale]: string
+}
+
+export interface AreaPosition {
+    width: number,
+    height: number,
+    x: number,
+    y: number,
+    canvas: {
+        width: number,
+        height: number
+    }
 }
 
 export enum Services {
@@ -113,7 +131,11 @@ export const SERVICE_INTERVAL_PAUSE = 5 * 60 * 1000
 
 export enum ServiceAreaSteps {
     None,
-    CaptureImage
+    CaptureImage,
+    ModeArea,
+    RankArea,
+    SRArea,
+    LevelArea,
 }
 
 export type JSONStringified = string

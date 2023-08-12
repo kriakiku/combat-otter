@@ -8,11 +8,11 @@ import Dropdown from 'primevue/dropdown';
 import InputSwitch from 'primevue/inputswitch';
 import UserButton from 'primevue/button';
 import { OhVueIcon, addIcons } from "oh-vue-icons";
-import { MdKeyboardarrowleftRound, MdKeyboardarrowrightRound, MdScreenshotmonitor, MdFibermanualrecordSharp, MdImagenotsupportedSharp } from "oh-vue-icons/icons/md";
+import { MdKeyboardarrowleftRound, MdKeyboardarrowrightRound, MdScreenshotmonitor, MdFibermanualrecordSharp, MdImagenotsupportedSharp, MdCloseRound } from "oh-vue-icons/icons/md";
 import { SiDiscord, SiObsstudio  } from "oh-vue-icons/icons/si";
 import { OiBlocked  } from "oh-vue-icons/icons/oi";
 import { LaGlobeEuropeSolid  } from "oh-vue-icons/icons/la";
-import { BiBalloon, BiSignpostFill, BiWindowDesktop } from "oh-vue-icons/icons/bi";
+import { BiBalloon, BiSignpostFill, BiWindowDesktop, BiCheckLg } from "oh-vue-icons/icons/bi";
 import { RiAlarmLine, RiZzzFill } from 'oh-vue-icons/icons/ri';
 import enLocale from './i18n/en'
 import uaLocale from './i18n/ua'
@@ -39,7 +39,8 @@ import IndexPage from './pages/index.vue'
 import SettingsServicePage from './pages/settings/service.vue'
 
 import "primevue/resources/themes/md-dark-deeppurple/theme.css";
-import './assets/index.scss'
+import 'vue3-draggable-resizable/dist/Vue3DraggableResizable.css';
+import './assets/index.scss';
 
 const i18n = createI18n({
     legacy: false,
@@ -73,6 +74,7 @@ addIcons(
     MdScreenshotmonitor,
     MdFibermanualrecordSharp,
     MdImagenotsupportedSharp,
+    MdCloseRound,
     SiObsstudio,
     SiDiscord,
     OiBlocked,
@@ -81,6 +83,7 @@ addIcons(
     BiSignpostFill,
     BiWindowDesktop,
     RiAlarmLine,
+    BiCheckLg,
     RiZzzFill,
 );
 

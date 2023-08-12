@@ -1,4 +1,4 @@
-import { ServiceAreaSteps, ServiceInterval, Services, ServiceScreenshotMethod, ServiceScreenshotWindowPreset } from "@typed";
+import { ServiceAreaSteps, ServiceInterval, Services, ServiceScreenshotMethod, ServiceScreenshotWindowPreset, SettingsKeys } from "@typed";
 
 export default {
     languageTitle: 'English',
@@ -101,7 +101,8 @@ export default {
         'area-selector': {
             title: 'Area',
             actions: {
-                reset: 'Reconfigure',
+                reconfigure: 'Reconfigure',
+                reset: 'Reset',
                 continue: 'Continue'
             },
             [ServiceAreaSteps.None]: {
@@ -110,6 +111,26 @@ export default {
             [ServiceAreaSteps.CaptureImage]: {
                 subtitle: 'Step I. Image Capture',
                 disclaimer: 'To capture an image — go to the game window (based on your "Input Source" setting) and wait 5 seconds. If the capture is successful, the image will be displayed. You will need to switch to ranked game mode (WZ or MW doesn\'t matter).'
+            },
+            [ServiceAreaSteps.ModeArea]: {
+                subtitle: 'Step II. Game Mode Area',
+                area: 'Game mode',
+                disclaimer: 'Select the area of the screen where the words "Ranked Play" and "Warzone" or "MW" are located. Try to make the vertically area as small as possible. The overlay with metrics and Discord should not fall into the capture area.',
+            },
+            [ServiceAreaSteps.RankArea]: {
+                subtitle: 'Step III. Rank Area',
+                area: 'Rank',
+                disclaimer: 'Capture the area with your rank. Leave a horizontal space so that as the rank increases, it fits into the area. Narrow the area vertically as much as possible to exclude unnecessary data.',
+            },
+            [ServiceAreaSteps.SRArea]: {
+                subtitle: 'Step III. SR Area',
+                area: 'SR',
+                disclaimer: 'By analogy with the previous value, capture the area with your current SR value. 😵‍💫 If you are playing a non-English version of the game – the level of some divisions may overlap with the SR value. If you encounter a recognition problem, you can temporarily change the language of the game.',
+            },
+            [ServiceAreaSteps.LevelArea]: {
+                subtitle: 'Step III. Level Area',
+                area: 'Level',
+                disclaimer: 'By analogy with the previous value, capture the area with your level. Proceed from the fact that someday your level may become higher than 1000 👻.'
             }
         }
     

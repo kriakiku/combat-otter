@@ -7,6 +7,9 @@ const api = {
   setSettings: <K extends keyof SettingsStore>(key: K, value: SettingsStore[K]) => {
     ipcRenderer.send('settings:update', key, value)
   },
+  resetSettings: <K extends keyof SettingsStore>(key: K) => {
+    ipcRenderer.send('settings:reset', key)
+  },
   subscribeSettings: (handler: (config: SettingsStore) => void) => {
     const subscriber = (_: IpcRendererEvent, config: SettingsStore) => {
       handler(config);

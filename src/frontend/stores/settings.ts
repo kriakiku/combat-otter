@@ -37,7 +37,10 @@ export const useSettingsStore = defineStore('settings', {
         },
         set<K extends keyof SettingsStore>(key: K, value: SettingsStore[K]) {
             window.api.setSettings(key, value);
-        }
+        },
+        reset<K extends keyof SettingsStore>(key: K) {
+            window.api.resetSettings(key);
+        },
     },
 })
 
@@ -55,3 +58,11 @@ export const useSetting = <K extends keyof SettingsStore>(key: K) => {
 
     return value;
 }
+
+export const useResetSetting = () => {
+    const settings = useSettingsStore();
+
+    return <K extends keyof SettingsStore>(key: K) => {
+        settings.reset(key);
+    }
+};
