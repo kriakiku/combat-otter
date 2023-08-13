@@ -6,7 +6,7 @@ import { inputService } from "@services/index";
 import { ffprobe } from '@modules/ffmpeg';
 
 /** Success captured area image path */
-const CAPTURED_IMAGE_PATH = join(app.getPath('userData'), 'captured-image.jpg');
+const CAPTURED_IMAGE_PATH = join(app.getPath('userData'), 'captured-image.dat');
 
 export const servicesEndpoints: Array<FastifyHandler<void>> = [
     /**

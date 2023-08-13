@@ -99,7 +99,7 @@ export default {
                         'If you stream via OBS – you can integrate screen capture via OBS. This is the best solution for you.',
                     connection: {
                         title: 'Connection',
-                        description: 'OBS WebSocket connection settings. 🥷 Please don\'t forget to perform the configuration.',
+                        description: 'OBS WebSocket connection settings. Please don\'t forget to perform the configuration.',
                         disclaimer: 'As shown in the screenshot, you need to enable the "WebSocket Server" in OBS. At the next step, you need to transfer the connection data (IV step).',
                         actions: {
                             reconfigure: 'Reconfigure',
@@ -119,6 +119,24 @@ export default {
                                 description: 'Leave the field empty if you have disabled authentication in the WebSocket server settings.'
                             }
                         }
+                    },
+                    source: {
+                        title: 'Input Source',
+                        description: 'The source of the image capture with the game.',
+                        disclaimer: 'We strongly recommend creating a separate source that will capture the game. This will avoid false positives (for example, while watching a ranked letsplay on YouTube).',
+                        emptySources: 'No sources found for this scene.',
+                        emptyScenes: 'Couldn\'t get a list of scenes and resources. Please check the connection status to OBS.',
+                        statuses: {
+                            'not-selected': 'The input source is not selected.',
+                            'disabled': 'The source ({sourceName}) is turned off in current scene ({sceneName}).',
+                            'not-found': 'The source ({sourceName}) was not found on the currently active scene ({sceneName}).',
+                            'ok': 'The source ({sourceName}) has been found, everything is fine!',
+                            'not-launched': 'The source ({sourceName}) has been found, but most likely the game is not running yet.',
+                            'unknown': 'Unknown status: {message}'
+                        },
+                        actions: {
+                            reconfigure: 'Pick Source',
+                        },
                     }
                 }
             }
@@ -191,7 +209,9 @@ export default {
     badge: {
         presets: {
             tip: 'Tip',
-            attention: 'Attention'
+            warning: 'Warning',
+            attention: 'Attention',
+            ok: 'Ok'
         }
     },
 

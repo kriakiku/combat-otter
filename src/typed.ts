@@ -152,5 +152,30 @@ export enum ServiceAreaSteps {
     LevelArea,
 }
 
+export interface OBSConnectionStatus {
+    type: 'connected' | 'disconnected'
+    message?: string
+    at: number
+}
+
+export interface OBSSourceScene {
+    sceneIndex: number,
+    sceneName: string,
+    items: OBSSourceSceneItem[]
+}
+
+export interface OBSSourceSceneItem {
+    inputKind: string
+    sourceName: string
+    sceneItemEnabled: boolean
+}
+
+export interface OBSCurrentSource {
+    sceneName: string
+    sourceName: string
+    status: 'not-selected' | 'disabled' | 'not-found' | 'ok' | 'unknown' | 'not-launched'
+    message?: string
+}
+
 export type JSONStringified = string
 export type TimeoutId = ReturnType<typeof setTimeout>

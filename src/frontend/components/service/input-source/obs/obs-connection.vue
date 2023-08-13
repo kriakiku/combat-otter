@@ -10,7 +10,8 @@
         </template>
 
         <template #description>
-            {{$t(`service.input-source.sources.${Services.obs}.connection.description`)}}
+            <div>{{ $t(`service.input-source.sources.${Services.obs}.connection.description`) }}</div>
+            <obs-connection-status :data="connectionStatus" />
         </template>
 
         <template #action>
@@ -85,12 +86,16 @@
         </template>
 
         <template #footer>
-            <user-button
-                :label="$t(`service.input-source.sources.${Services.obs}.connection.actions.continue`)"
-                @click="continueHandler"
-                outlined
-                size="small"
-            />
+            <div :class="$style.footer">
+                <obs-connection-status v-if="step === 'form'" :data="connectionStatus" :class="$style.status" />
+                <user-button
+                    :class="$style.continue"
+                    :label="$t(`service.input-source.sources.${Services.obs}.connection.actions.continue`)"
+                    @click="continueHandler"
+                    outlined
+                    size="small"
+                />
+            </div>
         </template>
     </dialog-window>
 </template>
@@ -99,6 +104,8 @@
 import { computed, ref, watch } from "vue";
 import { Services } from '@typed'
 import exampleOBS from '@frontend/assets/images/obs-server.png';
+import { useFetch, useIntervalFn } from "@vueuse/core";
+import obsConnectionStatus from "./obs-connection-status.vue";
 
 /**
  * Step
@@ -120,6 +127,23 @@ watch(visible, () => {
         step.value = 'info'
     }
 });
+
+/**
+ * Connection status
+ */
+const { execute, data: connectionStatus } = useFetch<string>('backend:///service/obs/connection-status', { immediate: true });
+const { pause: pauseFast, resume: resumeFast } = useIntervalFn(execute, 2000, { immediate: false });
+const { pause: pauseSlow, resume: resumeSlow } = useIntervalFn(execute, 8000, { immediate: false });
+
+watch(visible, () => {
+    if (visible.value) {
+        resumeFast();
+        pauseSlow();
+    } else {
+        pauseFast();
+        resumeSlow();
+    }
+}, { immediate: true });
 
 /**
  * Form
@@ -172,5 +196,21 @@ const password = computed<string>({
     display: block;
     padding: 0 1rem;
     margin-bottom: 1rem;
+}
+
+.footer {
+    display: flex;
+    gap: 0.4rem;
+}
+
+.status {
+    display: block;
+    text-align: left;
+    margin-right: auto;
+}
+
+.continue {
+    min-width: 7rem !important;
+    margin-left: auto !important;
 }
 </style>

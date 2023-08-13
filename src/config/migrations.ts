@@ -45,13 +45,13 @@ export const store = new Store<SettingsStore>({
         },
         [SettingsKeys.ServiceGridAreaRank]: {
             x: 63,
-            y: 301,
+            y: 297,
             width: 121,
-            height: 51,
+            height: 55,
             canvas: {
                 width: 1356.4375,
                 height: 763
-            }
+            },
         },
         [SettingsKeys.ServiceGridAreaSR]: {
             x: 63,

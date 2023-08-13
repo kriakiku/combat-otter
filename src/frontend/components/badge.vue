@@ -1,5 +1,5 @@
 <template>
-    <span :class="[$style.tip, $style[`tip--${color}`]]">
+    <span :class="[$style.tip, $style[`tip--${color || 'info'}`]]">
         <span :class="$style.inner">
             <slot />
         </span>
@@ -7,11 +7,9 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps<{
-    color?: 'info' | 'danger' | 'warning' | 'blank'
+const { color } = defineProps<{
+    color?: 'info' | 'danger' | 'warning' | 'blank' | 'success'
 }>();
-
-const color = props.color || 'info'
 </script>
 
 <style lang="scss" module>
@@ -33,6 +31,10 @@ const color = props.color || 'info'
 
 .tip--info {
     color: #6facd9;
+}
+
+.tip--success {
+    color: #6fd99b;
 }
 
 .tip--warning {

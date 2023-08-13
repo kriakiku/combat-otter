@@ -20,6 +20,7 @@ import { OiBlocked  } from "oh-vue-icons/icons/oi";
 import { LaGlobeEuropeSolid  } from "oh-vue-icons/icons/la";
 import { BiBalloon, BiSignpostFill, BiWindowDesktop, BiCheckLg, BiEthernet } from "oh-vue-icons/icons/bi";
 import { RiAlarmLine, RiZzzFill, RiWindowLine } from 'oh-vue-icons/icons/ri';
+import { HiEye, HiEyeOff } from 'oh-vue-icons/icons/hi';
 
 import enLocale from './i18n/en'
 import uaLocale from './i18n/ua'
@@ -95,6 +96,8 @@ addIcons(
     BiCheckLg,
     BiEthernet,
     RiZzzFill,
+    HiEye,
+    HiEyeOff
 );
 
 /** Base components */

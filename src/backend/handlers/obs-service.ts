@@ -1,21 +1,28 @@
 import { FastifyHandler } from "@backend/typed";
-import { getSourceList, connectionStatus } from "@services/obs";
+import { obsService } from "@services/obs";
 
 export const obsServiceEndpoints: Array<FastifyHandler<void>> = [
     // Connection status
     {
         path: '/service/obs/connection-status',
         handler: async (_, reply) => {
-            const status = await connectionStatus();
-            reply.send(status);
+            reply.send(obsService.connectionStatus);
         }
     },
     // Source list
     {
-        path: '/services/obs/source-list',
+        path: '/service/obs/source-list',
         handler: async (_, reply) => {
-            const list = await getSourceList();
+            const list = await obsService.fetchSources();
             reply.send(list);
+        }
+    },
+    // Current source
+    {
+        path: '/service/obs/current-source',
+        handler: async (_, reply) => {
+            const info = await obsService.getCurrentSource();
+            reply.send(info);
         }
     }
 ]

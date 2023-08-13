@@ -1,19 +1,22 @@
-import { sqliteTable, text, integer, uniqueIndex } from 'drizzle-orm/sqlite-core';
+import { sql } from "drizzle-orm";
+import { sqliteTable, text, integer, index } from 'drizzle-orm/sqlite-core';
 
 /**
- * Demo tables
+ * History
  */
-
-export const countries = sqliteTable('countries', {
-    id: integer('id').primaryKey(),
-    name: text('name'),
-  }, (countries) => ({
-    nameIdx: uniqueIndex('nameIdx').on(countries.name),
-  })
-);
-
-export const cities = sqliteTable('cities', {
+export const history = sqliteTable('history', {
   id: integer('id').primaryKey(),
-  name: text('name'),
-  countryId: integer('country_id').references(() => countries.id),
-})
+  type: text('type', { enum: [
+    "MW:level",
+
+    "MW:rank",
+    "MW:sr",
+
+    "WZ:rank",
+    "WZ:sr",
+  ] }),
+  value: integer('value'),
+  createdAt: text("createdAt").default(sql`CURRENT_TIMESTAMP`)
+}, (self) => ({
+  typeIdx: index('typeIdx').on(self.type)
+}))

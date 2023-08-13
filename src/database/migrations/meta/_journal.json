@@ -1,12 +1,12 @@
 {
-  "version": "5",
+  "version": "0",
   "dialect": "sqlite",
   "entries": [
     {
       "idx": 0,
       "version": "5",
-      "when": 1690228192635,
-      "tag": "0000_productive_warbird",
+      "when": 1691922088333,
+      "tag": "0000_yielding_mojo",
       "breakpoints": true
     }
   ]
