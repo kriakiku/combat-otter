@@ -14,7 +14,6 @@ export const mainConfig: Configuration = {
   // Put your normal webpack config below here
   module: {
     rules,
-
   },
   // [solve] active-win > node-pre-gyp [deps]
   externals: ['nock', 'mock-aws-s3', 'aws-sdk'],
@@ -35,8 +34,19 @@ export const mainConfig: Configuration = {
           {
             from: resolve(__dirname, 'src', 'database', 'migrations'),
             to: resolve(__dirname, '.webpack/main', 'migrations')
+          },
+          {
+            from: resolve(__dirname, '.tessdata', 'eng.traineddata'),
+            to: resolve(__dirname, '.webpack/main', 'eng.traineddata')
+          },
+          {
+            from: resolve(__dirname, 'node_modules/tesseract.js-core/tesseract-core-simd.wasm'),
+            to: resolve(__dirname, '.webpack/main', 'tesseract-core-simd.wasm')
           }
       ]
     })
-  ]
+  ],
+  experiments: {
+    asyncWebAssembly: true
+  }
 };

@@ -1,0 +1,8 @@
+diff --git a/node_modules/tesseract.js-core/tesseract-core-simd.d.ts b/node_modules/tesseract.js-core/tesseract-core-simd.d.ts
+new file mode 100644
+index 0000000..b8552e7
+--- /dev/null
++++ b/node_modules/tesseract.js-core/tesseract-core-simd.d.ts
+@@ -0,0 +1 @@
++export default any;
+\ No newline at end of file

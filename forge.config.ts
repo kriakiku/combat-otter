@@ -2,8 +2,6 @@ import { join } from 'node:path'
 import type { ForgeConfig } from '@electron-forge/shared-types';
 import { MakerSquirrel } from '@electron-forge/maker-squirrel';
 import { MakerZIP } from '@electron-forge/maker-zip';
-import { MakerDeb } from '@electron-forge/maker-deb';
-import { MakerRpm } from '@electron-forge/maker-rpm';
 import { AutoUnpackNativesPlugin } from '@electron-forge/plugin-auto-unpack-natives';
 import { WebpackPlugin } from '@electron-forge/plugin-webpack';
 import FFmpegStatic from "ffmpeg-static-electron-forge";
@@ -15,11 +13,13 @@ const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
     extraResource: [
-      "src/database/migrations"
+      "src/database/migrations",
+      ".tessdata/eng.traineddata",
+      "node_modules/tesseract.js-core/tesseract-core-simd.wasm"
     ]
   },
   rebuildConfig: {},
-  makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin']), new MakerRpm({}), new MakerDeb({})],
+  makers: [new MakerSquirrel({}), new MakerZIP({}, ['darwin'])],
   plugins: [
     new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({
@@ -42,8 +42,8 @@ const config: ForgeConfig = {
     new FFmpegStatic({
       remove: true,
       path: join(__dirname, ".webpack", "main"),
-    }),
-  ],
+    })
+  ]
 };
 
 export default config;
