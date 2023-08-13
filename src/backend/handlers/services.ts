@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import { existsSync, readFileSync, writeFileSync, statSync } from 'node:fs';
 import { app } from "electron";
+import log from 'electron-log';
 import { FastifyHandler } from "@backend/typed";
 import { inputService } from "@services/index";
 import { ffprobe } from '@modules/ffmpeg';
@@ -61,7 +62,7 @@ export const servicesEndpoints: Array<FastifyHandler<void>> = [
                 reply.header('x-image-modify', modify);
                 reply.send(image);
             } catch (reason) {
-                console.error('[api:/services/area-input] Failed to get images meta information', reason);
+                log.scope('backend:/services/area-input').warn(`failed to get images meta information: ${reason?.message}`);
                 reply.status(404);
                 reply.send();
                 return;

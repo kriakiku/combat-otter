@@ -1,4 +1,5 @@
 import { protocol } from 'electron'
+import log from 'electron-log';
 import { FastifyInstance, InjectOptions } from 'fastify'
 
 export const BACKEND_SCHEME = 'backend'
@@ -32,10 +33,10 @@ export function useServerLocalScheme(server: FastifyInstance) {
                     statusText: response.statusMessage
                 }
             )
-        } catch (e) {
+        } catch (reason) {
             return new Response(
                 JSON.stringify({
-                    error: e ? e.message : 'unknown error'
+                    error: reason?.message || 'unknown error'
                 }),
                 {
                     headers: { 'content-type': 'application/json' },
@@ -46,5 +47,5 @@ export function useServerLocalScheme(server: FastifyInstance) {
         }
     })
 
-    console.log(`[Fastify:local-scheme] Backend started at ${BACKEND_SCHEME}:// local scheme`);
+    log.scope('backend:local-scheme').info(`backend started at ${BACKEND_SCHEME}:// local scheme`);
 }

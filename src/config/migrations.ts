@@ -1,12 +1,13 @@
 import { app } from 'electron'
 import Store from 'electron-store'
+import log from 'electron-log';
 import { SettingsStore, SettingsKeys, ServiceInterval, Services, ServiceScreenshotMethod, ServiceScreenshotWindowPreset } from '@typed';
 
 export const store = new Store<SettingsStore>({
     watch: true,
     accessPropertiesByDotNotation: false,
     beforeEachMigration: (_, context) => {
-        console.log(`[Config:beforeEachMigration] migrate from ${context.fromVersion} => ${context.toVersion}`);
+        log.scope('config:beforeEachMigration').info(`migrate from ${context.fromVersion} => ${context.toVersion}`);
     },
 	migrations: {
 		'0.0.1': store => {

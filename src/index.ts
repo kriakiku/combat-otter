@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron';
+import log from 'electron-log';
 import './modules/ffmpeg'
-
 import './backend'
 import './config'
 import { initPlugins } from './plugins'
@@ -17,10 +17,10 @@ if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-console.log(
-  '[userData:path]',
-  app.getPath('userData')
-)
+// Logs limit (256 kb)
+log.transports.file.maxSize = 262_144;
+
+log.scope('app:userData.path').info(app.getPath('userData'));
 
 const isProd = app.isPackaged;
 const devToolsPadding = isProd ? 0 : 610

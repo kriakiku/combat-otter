@@ -21,8 +21,8 @@
 //         }
 
 //         return stream.url;
-//     } catch (e) {
-//         console.error('[twitch]', e);
+//     } catch (reason) {
+//         console.error('[twitch]', reason);
 //         return null;
 //     }
 // }
@@ -52,8 +52,8 @@
 //         }
 
 //         return buffer;
-//     } catch (e) {
-//         console.error('[twitch]', e);
+//     } catch (reason) {
+//         console.error('[twitch]', reason);
 //         return null;
 //     }
 // }

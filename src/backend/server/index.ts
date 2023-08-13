@@ -1,4 +1,5 @@
 import { app } from 'electron'
+import log from 'electron-log';
 import Fastify, { FastifyInstance } from 'fastify'
 import { useServerLocalScheme } from './scheme';
 import { useServerExternalPort } from './port';
@@ -20,7 +21,7 @@ export async function initialize(register: (instance: FastifyInstance) => void) 
 
     register(instance);
 
-    console.log('[Fastify:initialize] Backend initialized');
+    log.scope('backend:initialize').log('backend initialized');
 
     /** Local scheme */
     useServerLocalScheme(instance);

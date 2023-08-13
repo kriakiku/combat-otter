@@ -1,4 +1,5 @@
 import { app } from 'electron'
+import log from 'electron-log';
 import { FastifyInstance } from 'fastify'
 import { config } from '@config/index';
 import { SettingsKeys } from '@typed';
@@ -27,7 +28,7 @@ export function useServerExternalPort(server: FastifyInstance) {
         if (currentListener) {
             await server.close();
             currentListener = null;
-            console.log(`[Fastify:external] Backend listener stopped. Reason: ${reason}`);
+            log.scope('backend:external').info(`backend listener stopped. Reason: ${reason}`);
         }
     }
 
@@ -46,7 +47,7 @@ export function useServerExternalPort(server: FastifyInstance) {
 
         // Server not launched and not needed
         if (!isEnabled) {
-            console.log(`[Fastify:external] Backend server not needed`);
+            log.scope('backend:external').log('backend server not needed');
             return;
         }
 
@@ -57,7 +58,7 @@ export function useServerExternalPort(server: FastifyInstance) {
             })
 
             config.set(SettingsKeys.BackendPort, availablePort);
-            console.log(`[Fastify:external] Backend port changed to ${availablePort}`);
+            log.scope('backend:external').info(`backend port changed to ${availablePort}`);
             return;
         }
 
@@ -76,7 +77,7 @@ export function useServerExternalPort(server: FastifyInstance) {
                     return
                 }
 
-                console.log(`[Fastify:external] server is now listening on ${address}`);
+                log.scope('backend:external').info(`server is now listening on ${address}`);
                 latestPort = userPort
                 resolve();
             }) as typeof currentListener

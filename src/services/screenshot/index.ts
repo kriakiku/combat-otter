@@ -1,5 +1,6 @@
 import { ServiceScreenshotMethod, ServiceScreenshotWindowItem, ServiceScreenshotWindowItemVersion, ServiceScreenshotWindowPreset, SettingsKeys } from '@typed';
 import activeWin from 'active-win';
+import log from 'electron-log';
 import { config } from '@config';
 import { ffmpeg } from '@modules/ffmpeg';
 import { stream2buffer } from '@services/helpers';
@@ -23,7 +24,7 @@ export async function getActiveWindowList(): Promise<ServiceScreenshotWindowItem
                 bounds: item.bounds
             }));
     } catch (reason) {
-        console.error('[services:screenshot:getActiveWindowList] Failed to get list of active windows', reason);
+        log.scope('services:screenshot.getActiveWindowList').error(`failed to get list of active windows: ${reason?.message}`);
         return [];
     }
 }
@@ -36,12 +37,12 @@ class ScreenshotService implements InputService {
 
     /** Start service */
     public start() {
-        console.log('[services:screenshot:start] Starting service');
+        log.scope('services:screenshot.start').log(`starting service`);
     }
 
     /** Stop service */
     public stop() {
-        console.log('[services:screenshot:stop] Stopping service');
+        log.scope('services:screenshot.stop').log(`stopping service`);
     }
     
     /** Get active window */
@@ -119,7 +120,7 @@ class ScreenshotService implements InputService {
 
             // Current window is not selected
             if (!pickedWindow.test(window)) {
-                console.log('[services:screenshot:captureScreen] the active window is not selected');
+                log.scope('services:screenshot.captureScreen').log(`the active window is not selected`);
                 return null;
             }
 
@@ -144,9 +145,10 @@ class ScreenshotService implements InputService {
                     // TODO: Try to solve problem with outside window
                     captureArea = detectAvailableCaptureArea(reasons);
                     if (!captureArea) {
-                        console.error('[services:screenshot:captureScreen:ffmpeg] Failed to capture window', ...reasons);
+                        
+                        log.scope('services:screenshot.captureScreen.ffmpeg').error(`failed to capture window:`, ...reasons);
                     } else {
-                        console.error(`[services:screenshot:captureScreen:gdigrab] The captured window pops out of the screen (${captureArea.screenWidth}x${captureArea.screenHeight})`);
+                        log.scope('services:screenshot.captureScreen.gdigrab').warn(`the captured window pops out of the screen (${captureArea.screenWidth}x${captureArea.screenHeight})`);
                     }
                 })
                 .run();
@@ -154,7 +156,7 @@ class ScreenshotService implements InputService {
             const buffer = await promise;
             return buffer;
         } catch (reason) {
-            console.error('[services:screenshot:captureScreen] Failed to capture screen', reason);
+            log.scope('services:screenshot.captureScreen').error(`failed to capture screen`);
             return null;
         }
     }
@@ -176,7 +178,7 @@ class ScreenshotService implements InputService {
 
             // Window not exists
             if (window === null) {
-                console.log('[services:screenshot:captureWindow] Failed to find a window. The application may not be running.');
+                log.scope('services:screenshot.captureWindow').log(`failed to find a window. The application may not be running.`);
                 return null;
             }
 
@@ -190,14 +192,14 @@ class ScreenshotService implements InputService {
                 .format('mjpeg')
                 .output(stream, { end: true })
                 .on('error', (...reasons) => {
-                    console.error('[services:screenshot:captureWindow:ffmpeg] Failed to capture window', ...reasons);
+                    log.scope('services:screenshot.captureWindow.ffmpeg').error(`failed to capture window:`, ...reasons);
                 })
                 .run();
 
                 const buffer = await promise;
                 return buffer;
         } catch (reason) {
-            console.error('[services:screenshot:captureWindow] Failed to capture window', reason);
+            log.scope('services:screenshot.captureWindow').error(`failed to capture window: ${reason?.message}`);
             return null;
         }
 

@@ -1,6 +1,7 @@
 import OBSWebSocket, {EventSubscription, OBSWebSocketError} from 'obs-websocket-js';
 import { ExponentialStrategy } from 'backoff';
 import ipRegex from 'ip-regex';
+import log from 'electron-log';
 import { InputService } from '@services/typed';
 import { config } from '@config';
 import { OBSConnectionStatus, OBSCurrentSource, OBSSourceScene, SettingsKeys, TimeoutId } from '@typed';
@@ -75,7 +76,7 @@ class OBSService implements InputService {
     public async start() {
         this.enabled = true;
         this.backoff.reset();
-        console.log('[services:obs:start] starting service');
+        log.scope('services:obs.start').log('starting service');
         void this.connect();
     }
 
@@ -83,7 +84,7 @@ class OBSService implements InputService {
     public async stop() {
         this.enabled = false;
         clearTimeout(this.reconnectionTimeoutId);
-        console.log('[services:obs:stop] stopping service');
+        log.scope('services:obs.stop').log('stopping service');
         void this.disconnect();
     }
 
@@ -95,7 +96,7 @@ class OBSService implements InputService {
 
         try {
             clearTimeout(this.reconnectionTimeoutId);
-            console.log('[services:obs:connect] connecting');
+            log.scope('services:obs.connect').log('connecting');
             const { address, password } = formatConnectionCredentials();
             const {
                 obsWebSocketVersion,
@@ -103,15 +104,16 @@ class OBSService implements InputService {
             } = await connection.connect(address, password, this.connectionOptions);
 
             this.backoff.reset();
+            const infoMessage = `connected to server "${address}". Version: ${obsWebSocketVersion} (using RPC ${negotiatedRpcVersion})`;
             this.connectionStatus = {
                 type: 'connected',
-                message: `connected to server "${address}". Version: ${obsWebSocketVersion} (using RPC ${negotiatedRpcVersion})`,
+                message: infoMessage,
                 at: Date.now()
             }
-            console.log(`[services:obs:connect] connected to server "${address}". Version: ${obsWebSocketVersion} (using RPC ${negotiatedRpcVersion})`)
-        } catch (error) {
-            console.error('[services:obs:connect] failed to connect', error?.code, error?.message);
-            this.connectionErrorHandler(error);
+            log.scope('services:obs.connect').info(infoMessage);
+        } catch (reason) {
+            log.scope('services:obs.connect').warn(`failed to connect (#${reason?.code || '0000'}): ${reason?.message}`);
+            this.connectionErrorHandler(reason);
         }
     }
 
@@ -123,27 +125,27 @@ class OBSService implements InputService {
                 at: Date.now()
             }
 
-            console.log('[services:obs:disconnect] disconnecting');
+            log.scope('services:obs.disconnect').log('disconnecting');
             await connection.disconnect();
-            console.log('[services:obs:disconnect] connection terminated successfully')
-        } catch (error) {
+            log.scope('services:obs.disconnect').info('connection terminated successfully');
+        } catch (reason) {
             this.connectionStatus = {
                 type: 'disconnected',
-                message: `[${error?.code || '-0000'}] ${error?.message || 'unknown'}`,
+                message: `[${reason?.code || '-0000'}] ${reason?.message || 'unknown'}`,
                 at: Date.now()
             }
-            console.error('[services:obs:disconnect] failed to disconnect from the server', error?.message)
+            log.scope('services:obs.disconnect').warn(`failed to disconnect from the server (#${reason?.code || '0000'}): ${reason?.message}`);
         }
     }
 
     /** Reconnection Sub */
     private connectionErrorHandler(error: OBSWebSocketError) {
-        console.log('[services:obs:reconnectionSub] disconnected', error?.code, error?.message);
+        log.scope('services:obs.connectionErrorHandler').log(`disconnected (#${error?.code}): ${error?.message}`);
         clearTimeout(this.reconnectionTimeoutId);
         
         this.connectionStatus = {
             type: 'disconnected',
-            message: `[${error?.code || '-0001'}] ${error?.message || 'unknown'}`,
+            message: `[${error?.code || '0001'}] ${error?.message || 'unknown'}`,
             at: Date.now()
         }
 
@@ -152,7 +154,7 @@ class OBSService implements InputService {
         }
 
         const delay = this.backoff.next();
-        console.log(`[services:obs:reconnectionSub] the reconnection attempt will occur after ${delay}ms`);
+        log.scope('services:obs.connectionErrorHandler').log(`the reconnection attempt will occur after ${delay}ms`);
         this.reconnectionTimeoutId = setTimeout(() => {
             this.connect();
         }, delay);
@@ -164,9 +166,8 @@ class OBSService implements InputService {
             return;
         }
 
-        console.log('[services:obs:whenSettingsChanged] reconnecting due to changed settings');
+        log.scope('services:obs.whenSettingsChanged').log(`reconnecting due to changed settings`);
         this.backoff.reset();
-        // TODO: It may be worth closing the previous connection
         this.connect();
     }
 
@@ -199,8 +200,8 @@ class OBSService implements InputService {
             }
     
             await Promise.all(promises);
-        } catch (e) {
-            console.log('[services:obs:fetchSources] failed to get a list of resources', e.message);
+        } catch (reason) {
+            log.scope('services:obs.fetchSources').error(`failed to get a list of resources: ${reason?.message}`);
         }
 
         return list
@@ -279,7 +280,7 @@ class OBSService implements InputService {
 
             return Buffer.from(imageData.replace('data:image/png;base64,', ''), 'base64');
         } catch (reason) {
-            console.error('[services:obs:getInput] failed to capture an source', reason?.code, reason?.message)
+            log.scope('services:obs.getInput').warn(`failed to capture an source (#${reason?.code || '0000'}): ${reason?.message}`);
         }
 
         return null;
