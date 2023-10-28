@@ -46,6 +46,7 @@ import ServiceInputSourcePicker from './components/service/input-source/picker.v
 
 import IndexPage from './pages/index.vue'
 import SettingsServicePage from './pages/settings/service.vue'
+import PluginsPage from './pages/plugins/index.vue'
 
 import "primevue/resources/themes/md-dark-deeppurple/theme.css";
 import 'vue3-draggable-resizable/dist/Vue3DraggableResizable.css';
@@ -68,6 +69,7 @@ const router = createRouter({
     routes: [
       { path: '/', component: IndexPage, name: 'home' },
       { path: '/settings/service', component: SettingsServicePage, name: 'settings.service' },
+      { path: '/plugins', component: PluginsPage, name: 'plugins' },
     ],
 })
 

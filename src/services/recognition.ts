@@ -17,9 +17,9 @@ export let parseNumber = async (_input: Buffer): Promise<string | null> => {
 /**
  * Language path
  */
-let languagePath = join('./', '.tessdata', 'eng.traineddata')
+let tessdataEngPath = join('./', '.tessdata', 'eng.traineddata')
 if (app.isPackaged) {
-    languagePath = resolve(process.resourcesPath, 'eng.traineddata');
+    tessdataEngPath = resolve(process.resourcesPath, 'eng.traineddata');
 }
 
 /**
@@ -31,21 +31,25 @@ export async function initializeRecognition() {
         delete TessModule.then;
 
         /** Load language */
-        const engLanguage = readFileSync(languagePath);
+        const engLanguage = readFileSync(tessdataEngPath);
         TessModule.FS.writeFile('eng.traineddata', engLanguage);
 
         /** Parser generator */
         const generate = (whitelist?: string) => {
             return (input: Buffer) => {
+                let api = null;
+                let pointer = null;
+
                 try {
                     /** Format input */
-                    const pointer = TessModule._malloc(input.length * Uint8Array.BYTES_PER_ELEMENT);
+                    pointer = TessModule._malloc(input.length * Uint8Array.BYTES_PER_ELEMENT);
                     TessModule.HEAPU8.set(input, pointer);
                     const pix = TessModule._pixReadMem(pointer, input.length);
             
                     /** Create API request with props */
-                    const api = new TessModule.TessBaseAPI();
+                    api = new TessModule.TessBaseAPI();
                     api.Init(null, 'eng');
+                    // api.SetVariable('user_defined_dpi', '70')
                     if (whitelist) {
                         api.SetVariable('tessedit_char_whitelist', whitelist);
                     }
@@ -54,21 +58,26 @@ export async function initializeRecognition() {
                     /** Get recognized text */
                     const text = api.GetUTF8Text();
             
-                    /** Garbage collector */
-                    api.End();
-                    TessModule.destroy(api);
-                    TessModule._free(pointer);
-
                     return text;
                 } catch (reason) {
                     log.scope('services:recognition.parse').error(`parsing error: ${reason?.message}`);
                     return null;
+                } finally {
+                    /** Garbage collector */
+                    if (api) {
+                        api.End();
+                        TessModule.destroy(api);
+                    }
+
+                    if (pointer) {
+                        TessModule._free(pointer);
+                    }
                 }
             }
         }
 
-        parseText = generate();
-        parseNumber = generate('0123456789');
+        parseText = generate('RANKED PLYMWZO|:-'); // ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        parseNumber = generate();
         
     } catch (reason) {
         log.scope('services:recognition').error(`initialization error: ${reason?.message}`)

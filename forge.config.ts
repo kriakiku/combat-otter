@@ -15,6 +15,7 @@ const config: ForgeConfig = {
     extraResource: [
       "src/database/migrations",
       ".tessdata/eng.traineddata",
+      // ".tessdata/mw2.traineddata",
       "node_modules/tesseract.js-core/tesseract-core-simd.wasm"
     ]
   },
@@ -24,7 +25,7 @@ const config: ForgeConfig = {
     new AutoUnpackNativesPlugin({}),
     new WebpackPlugin({
       mainConfig,
-      devContentSecurityPolicy: `default-src 'self' 'unsafe-inline' data: blob: backend:; script-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: backend:`,
+      devContentSecurityPolicy: `default-src 'self' 'unsafe-inline' data: blob: backend:; frame-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: https: http:; script-src 'self' 'unsafe-eval' 'unsafe-inline' data: blob: backend:`,
       renderer: {
         config: rendererConfig,
         entryPoints: [

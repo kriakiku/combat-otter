@@ -93,3 +93,7 @@ out/
 
 # Dynamic forge config
 drizzle.config.json
+./tesseract-traning
+./.tessdata
+.tessdata/train/**
+

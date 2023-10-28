@@ -42,10 +42,13 @@ const active = ref('guide')
         display: flex;
         flex-direction: column;
         padding: 1rem 0;
+        min-height: 100vh;
     }
 
     .content {
+        position: relative;
         padding: 0 2rem;
+        flex: 1;
     }
 
     .header {

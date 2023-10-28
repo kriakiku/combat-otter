@@ -1,3 +1,6 @@
+import type { history } from "@database/schema"
+import type { InferModel } from "drizzle-orm"
+
 export enum SettingsKeys {
     /** Service */
     ServiceFrequencyInterval = 'service.frequency.interval',
@@ -176,6 +179,27 @@ export interface OBSCurrentSource {
     status: 'not-selected' | 'disabled' | 'not-found' | 'ok' | 'unknown' | 'not-launched'
     message?: string
 }
+
+/**
+ * Models
+ */
+export enum GameType {
+    'MW' = 'MW',
+    'WZ' = 'WZ',
+}
+
+export type History = InferModel<typeof history>
+
+export enum HistoryType {
+    'MW:level' = 'MW:level',
+
+    'MW:rank' = 'MW:rank',
+    'MW:sr' = 'MW:sr',
+
+    'WZ:rank' = 'WZ:rank',
+    'WZ:sr' = 'WZ:sr'
+}
+
 
 export type JSONStringified = string
 export type TimeoutId = ReturnType<typeof setTimeout>

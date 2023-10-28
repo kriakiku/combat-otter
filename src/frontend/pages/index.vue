@@ -97,7 +97,7 @@
                     <!-- Shadow ban notifier -->
                     <menu-item>
                         <template #link>
-                            <router-link :to="{ name: 'settings.service' }" />
+                            <router-link :to="{ name: 'plugins' }" />
                         </template>
 
                         <template #icon>

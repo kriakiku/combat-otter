@@ -100,7 +100,7 @@ class ScreenshotService implements InputService {
             /** FullScreen */
             if (fullScreen) {
                 const { stream, promise } = stream2buffer();
-
+                log.error('1')
                 ffmpeg()
                     // .on('start', (cmdline) => console.log(cmdline))
                     .input('desktop')
@@ -127,7 +127,8 @@ class ScreenshotService implements InputService {
             let captureArea = null;
 
             const { stream, promise } = stream2buffer();
-
+            log.error('2')
+            // .inputOptions(['-tune zerolatency', '-pix_fmt yuv420p', '-preset ultrafast', '-b:v 5M'])
             ffmpeg()
                 // .on('start', (cmdline) => console.log(cmdline))
                 .input('desktop')
@@ -145,7 +146,6 @@ class ScreenshotService implements InputService {
                     // TODO: Try to solve problem with outside window
                     captureArea = detectAvailableCaptureArea(reasons);
                     if (!captureArea) {
-                        
                         log.scope('services:screenshot.captureScreen.ffmpeg').error(`failed to capture window:`, ...reasons);
                     } else {
                         log.scope('services:screenshot.captureScreen.gdigrab').warn(`the captured window pops out of the screen (${captureArea.screenWidth}x${captureArea.screenHeight})`);
@@ -183,7 +183,7 @@ class ScreenshotService implements InputService {
             }
 
             const { stream, promise } = stream2buffer();
-
+            log.error('3')
             ffmpeg()
                 // .on('start', (cmdline) => console.log(cmdline))
                 .input(`title=${window.title}`)

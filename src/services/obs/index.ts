@@ -275,7 +275,8 @@ class OBSService implements InputService {
             const { imageData } = await connection.call('GetSourceScreenshot', {
                 sourceName,
                 imageFormat: 'png',
-                imageHeight: 1080
+                // imageHeight: 1080,
+                imageCompressionQuality: 100
             });
 
             return Buffer.from(imageData.replace('data:image/png;base64,', ''), 'base64');

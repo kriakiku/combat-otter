@@ -39,6 +39,10 @@ export const mainConfig: Configuration = {
             from: resolve(__dirname, '.tessdata', 'eng.traineddata'),
             to: resolve(__dirname, '.webpack/main', 'eng.traineddata')
           },
+          // {
+          //   from: resolve(__dirname, '.tessdata', 'mw2.traineddata'),
+          //   to: resolve(__dirname, '.webpack/main', 'mw2.traineddata')
+          // },
           {
             from: resolve(__dirname, 'node_modules/tesseract.js-core/tesseract-core-simd.wasm'),
             to: resolve(__dirname, '.webpack/main', 'tesseract-core-simd.wasm')
